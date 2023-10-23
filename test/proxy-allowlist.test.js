@@ -2,6 +2,6 @@
 
 import { runSuite } from "./suite.js";
 
-runSuite(
-  (base) => ({ ...base }),
-);
+import { setup } from "../src/proxy-allowlist.js"
+
+runSuite(setup);

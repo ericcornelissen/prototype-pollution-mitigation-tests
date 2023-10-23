@@ -3,3 +3,9 @@ out.txt
 ## IDEs
 .idea/
 .vscode/
+
+## Node.js/npm
+node_modules/
+.npm/
+.node_repl_history
+npm-debug.log*

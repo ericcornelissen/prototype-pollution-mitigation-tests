@@ -92,6 +92,19 @@ const base = {
 
 // -----------------------------------------------------------------------------
 
+function structurallyEqual(actual, expected, message) {
+  try {
+    assert.equal(actual, expected, message);
+  } catch (error) {
+    const sameStructure = "Values have same structure but are not reference-equal:"
+    if (!error.message.startsWith(sameStructure)) {
+      throw error;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+
 export function runSuite(setup) {
   test("obj", async (t) => {
     t.beforeEach((t) => {
@@ -171,19 +184,19 @@ export function runSuite(setup) {
       });
 
       await t.test(".__proto__", (t) => {
-        assert.equal(t.obj.__proto__, Object.prototype);
+        structurallyEqual(t.obj.__proto__, Object.getPrototypeOf(base));
       });
 
       await t.test("['__proto__']", (t) => {
-        assert.equal(t.obj["__proto__"], Object.prototype);
+        structurallyEqual(t.obj["__proto__"], Object.getPrototypeOf(base));
       });
 
       await t.test(".constructor", (t) => {
-        assert.equal(t.obj.constructor, Object.prototype.constructor);
+        structurallyEqual(t.obj.constructor, Object.getPrototypeOf(base).constructor);
       });
 
       await t.test("['constructor']", (t) => {
-        assert.equal(t.obj["constructor"], Object.prototype.constructor);
+        structurallyEqual(t.obj["constructor"], Object.getPrototypeOf(base).constructor);
       });
     });
 

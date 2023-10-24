@@ -4,7 +4,7 @@
 # Results
 
 This file contains the last recorded test results for this project. It was run
-on 2023-10-18 against Node.js v20.8.1.
+on 2023-10-24 against Node.js v20.8.0.
 
 _This file should not be edited manually, to update it run `./run.sh` from the
 root of this project._
@@ -37,10 +37,10 @@ test | Plain object | Object.create | Object.preventExtension | Object.seal | Pr
 `obj>assign>override>.__proto__['x']` | X |   | X | X |   |   |   |  
 `obj>assign>override>.__proto__[42]` | X |   | X | X |   |   |   |  
 `obj>assign>override>.__proto__[Symbol]` | X |   | X | X |   |   |   |  
-`obj>assign>override>.constructor.prototype.x` | X |   | X | X |   |   |   | X
-`obj>assign>override>.constructor.prototype['x']` | X |   | X | X |   |   |   | X
-`obj>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   | X
-`obj>assign>override>.constructor.prototype[Symbol]` | X |   | X | X |   |   |   | X
+`obj>assign>override>.constructor.prototype.x` | X |   | X | X |   |   |   |  
+`obj>assign>override>.constructor.prototype['x']` | X |   | X | X |   |   |   |  
+`obj>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   |  
+`obj>assign>override>.constructor.prototype[Symbol]` | X |   | X | X |   |   |   |  
 `obj>assign>delete>.x` | X | X | X | X | X | X | X | X
 `obj>assign>delete>['x']` | X | X | X | X | X | X | X | X
 `obj>assign>delete>[42]` | X | X | X | X | X | X | X | X
@@ -49,10 +49,10 @@ test | Plain object | Object.create | Object.preventExtension | Object.seal | Pr
 `obj>assign>delete>.__proto__['x']` | X |   | X |   |   |   |   |  
 `obj>assign>delete>.__proto__[42]` | X |   | X |   |   |   |   |  
 `obj>assign>delete>.__proto__[Symbol]` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.constructor.prototype.x` | X |   | X |   |   |   |   | X
-`obj>assign>delete>.constructor.prototype['x']` | X |   | X |   |   |   |   | X
-`obj>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   | X
-`obj>assign>delete>.constructor.prototype[Symbol]` | X |   | X |   |   |   |   | X
+`obj>assign>delete>.constructor.prototype.x` | X |   | X |   |   |   |   |  
+`obj>assign>delete>.constructor.prototype['x']` | X |   | X |   |   |   |   |  
+`obj>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   |  
+`obj>assign>delete>.constructor.prototype[Symbol]` | X |   | X |   |   |   |   |  
 `obj>assign>extend>.x` | X | X | X | X | X | X | X | X
 `obj>assign>extend>['x']` | X | X | X | X | X | X | X | X
 `obj>assign>extend>[42]` | X | X | X | X | X | X | X | X
@@ -61,10 +61,10 @@ test | Plain object | Object.create | Object.preventExtension | Object.seal | Pr
 `obj>assign>extend>.__proto__['x']` | X |   |   |   |   |   |   |  
 `obj>assign>extend>.__proto__[42]` | X |   |   |   |   |   |   |  
 `obj>assign>extend>.__proto__[Symbol]` | X |   |   |   |   |   |   |  
-`obj>assign>extend>.constructor.prototype.x` | X |   |   |   |   |   |   | X
-`obj>assign>extend>.constructor.prototype['x']` | X |   |   |   |   |   |   | X
-`obj>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   | X
-`obj>assign>extend>.constructor.prototype[Symbol]` | X |   |   |   |   |   |   | X
+`obj>assign>extend>.constructor.prototype.x` | X |   |   |   |   |   |   |  
+`obj>assign>extend>.constructor.prototype['x']` | X |   |   |   |   |   |   |  
+`obj>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   |  
+`obj>assign>extend>.constructor.prototype[Symbol]` | X |   |   |   |   |   |   |  
 `obj>assign>.__proto__` | X | X | X | X | X | X | X | X
 `obj>assign>['__proto__']` | X | X | X | X | X | X | X | X
 `obj>assign>.constructor` | X | X | X | X | X | X | X | X

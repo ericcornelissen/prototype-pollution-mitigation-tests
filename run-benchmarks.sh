@@ -10,7 +10,7 @@ node bench/access/present/object-seal.bench.js
 node bench/access/present/proxy-strict.bench.js
 node bench/access/present/proxy-allowlist.bench.js
 node bench/access/present/proxy-denylist.bench.js
-node bench/access/present/proxy-with-prototype-access.bench.js
+node bench/access/present/proxy-unrestricted.bench.js
 
 echo
 node bench/access/absent/baseline.bench.js
@@ -21,7 +21,7 @@ node bench/access/absent/object-seal.bench.js
 node bench/access/absent/proxy-strict.bench.js
 node bench/access/absent/proxy-allowlist.bench.js
 node bench/access/absent/proxy-denylist.bench.js
-node bench/access/absent/proxy-with-prototype-access.bench.js
+node bench/access/absent/proxy-unrestricted.bench.js
 
 echo
 node bench/access/prototype/baseline.bench.js
@@ -32,4 +32,4 @@ node bench/access/prototype/object-seal.bench.js
 node bench/access/prototype/proxy-strict.bench.js
 node bench/access/prototype/proxy-allowlist.bench.js
 node bench/access/prototype/proxy-denylist.bench.js
-node bench/access/prototype/proxy-with-prototype-access.bench.js
+node bench/access/prototype/proxy-unrestricted.bench.js

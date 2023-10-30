@@ -4,14 +4,12 @@ function isNil(value) {
   return value === null || value === undefined;
 }
 
+function isPrimitive(value) {
+  return typeof value === "number" || typeof value === "string";
+}
+
 export function setup(base) {
-  if (
-    isNil(base)
-    ||
-    typeof base === "number"
-    ||
-    typeof base === "string"
-  ) {
+  if (isNil(base) || isPrimitive(base)) {
     return base;
   }
 

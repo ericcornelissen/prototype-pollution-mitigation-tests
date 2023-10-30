@@ -14,6 +14,10 @@ export function setup(base) {
       }
 
       /// Allow non-blocked properties
+      // This is checked after `Object.hasOwn` because we don't want to prevent
+      // access to properties explicitly added to the object. This assumes the
+      // object was created in a trusted setting and could be problematic if say
+      // `{}.__proto__ = Object.prototype`.
       if (!DENYLIST.includes(property)) {
         return target[property];
       }

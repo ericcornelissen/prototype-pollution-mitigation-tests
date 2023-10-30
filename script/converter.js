@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: ISC
 
 /**
- * A script to convert the file outputted by the `run.sh` script into a MarkDown
- * table (and corresponding file) for manual comparison by humans.
+ * A script to convert the file outputted by the `run-tests.sh` script into a
+ * MarkDown table (and corresponding file) for manual comparison by humans.
  */
 
 import cp from "node:child_process";
@@ -89,8 +89,8 @@ const markdown = `<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
 This file contains the last recorded test results for this project. It was run
 on ${today} against Node.js ${nodeVersion}.
 
-_This file should not be edited manually, to update it run \`./run.sh\` from the
-root of this project._
+_This file should not be edited manually, to update it run \`./run-tests.sh\`
+from the root of this project._
 
 ## Overview
 

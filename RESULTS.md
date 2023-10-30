@@ -4,14 +4,14 @@
 # Results
 
 This file contains the last recorded test results for this project. It was run
-on 2023-10-24 against Node.js v20.8.0.
+on 2023-10-30 against Node.js v20.8.0.
 
-_This file should not be edited manually, to update it run `./run.sh` from the
-root of this project._
+_This file should not be edited manually, to update it run `./run-tests.sh`
+from the root of this project._
 
 ## Overview
 
-test | Plain object | Object.create | Object.preventExtension | Object.seal | Proxy (strict) | Proxy (allowlist) | Proxy (denylist) | Proxy (explicit prototype access)
+test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy (strict) | Proxy (allowlist) | Proxy (denylist) | Proxy (unrestricted)
 --- | --- | --- | --- | --- | --- | --- | --- | ---
 `obj>access>present>.x` | X | X | X | X | X | X | X | X
 `obj>access>present>['x']` | X | X | X | X | X | X | X | X

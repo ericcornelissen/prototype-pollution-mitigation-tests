@@ -6,8 +6,8 @@ OUTFILE='out.txt'
 rm $OUTFILE
 touch $OUTFILE
 
-echo '# Plain object' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/plain-object.test.js >>$OUTFILE
+echo '# Baseline' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/baseline.test.js >>$OUTFILE
 
 echo >>$OUTFILE
 echo '# Object.create' >>$OUTFILE
@@ -39,7 +39,7 @@ echo '# Proxy (denylist)' >>$OUTFILE
 node --test-reporter=./script/reporter.js test/proxy-denylist.test.js >>$OUTFILE
 
 echo >>$OUTFILE
-echo '# Proxy (explicit prototype access)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/proxy-with-prototype-access.test.js >>$OUTFILE
+echo '# Proxy (unrestricted)' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/proxy-unrestricted.test.js >>$OUTFILE
 
 node script/converter.js $OUTFILE

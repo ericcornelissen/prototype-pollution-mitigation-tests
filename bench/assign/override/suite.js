@@ -1,20 +1,19 @@
 // SPDX-License-Identifier: ISC
 
 /**
- * A benchmark evaluating the performance of accessing a prototype property.
+ * A benchmark evaluating the performance of overriding a property.
  */
 
 import Benchmark from "benchmark";
 
 const property = "a";
-const value = "b";
-const base = { /* empty */ };
+let value = 0;
+const base = { [property]: value };
 
-Object.prototype[property] = value;
-
-function canAccessPrototypeProperty(object) {
+function canOverride(object) {
   try {
-    return object[property] === value;
+    object[property] = value++;
+    return true;
   } catch (_) {
     return false;
   }
@@ -22,7 +21,7 @@ function canAccessPrototypeProperty(object) {
 
 export function runSuite(name, setup) {
   const suite = new Benchmark.Suite(
-    "obj>access>prototype>['x']",
+    "obj>assign>override>['x']",
     {
       onCycle: (event) => {
         const fn = event.currentTarget.name;
@@ -34,9 +33,9 @@ export function runSuite(name, setup) {
 
   const object = setup(base);
 
-  if (canAccessPrototypeProperty(object)) {
+  if (canOverride(object)) {
     suite.add(name, () => {
-      object[property];
+      object[property] = value++;
     });
   }
 

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: ISC
 
 /**
- * A benchmark evaluating the performance of accessing a prototype property.
+ * A benchmark evaluating the performance of deleting a property from an object.
  */
 
 import Benchmark from "benchmark";
@@ -10,11 +10,11 @@ const property = "a";
 const value = "b";
 const base = { /* empty */ };
 
-Object.prototype[property] = value;
-
-function canAccessPrototypeProperty(object) {
+function canDelete(object) {
   try {
-    return object[property] === value;
+    delete object[property];
+    object[property] = value;
+    return true;
   } catch (_) {
     return false;
   }
@@ -22,7 +22,7 @@ function canAccessPrototypeProperty(object) {
 
 export function runSuite(name, setup) {
   const suite = new Benchmark.Suite(
-    "obj>access>prototype>['x']",
+    "obj>assign>delete>['x']",
     {
       onCycle: (event) => {
         const fn = event.currentTarget.name;
@@ -34,9 +34,10 @@ export function runSuite(name, setup) {
 
   const object = setup(base);
 
-  if (canAccessPrototypeProperty(object)) {
+  if (canDelete(object)) {
     suite.add(name, () => {
-      object[property];
+      delete object[property];
+      object[property] = value;
     });
   }
 

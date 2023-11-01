@@ -1,15 +1,9 @@
 // SPDX-License-Identifier: ISC
 
-function isNil(value) {
-  return value === null || value === undefined;
-}
-
-function isPrimitive(value) {
-  return typeof value === "number" || typeof value === "string";
-}
+import { isNil, isProxyable } from "./_shared.js";
 
 export function setup(base) {
-  if (isNil(base) || isPrimitive(base)) {
+  if (!isProxyable(base)) {
     return base;
   }
 
@@ -29,12 +23,6 @@ export function setup(base) {
       }
 
       return undefined;
-    },
-
-    // Intercepting `[[Call]]` with `apply` is necessary to be able to proxy
-    // functions.
-    apply(target, thisArg, args) {
-      return target.apply(thisArg, args);
     },
   });
 }

@@ -79,3 +79,26 @@ node bench/assign/extend/proxy-strict.bench.js
 node bench/assign/extend/proxy-allowlist.bench.js
 node bench/assign/extend/proxy-denylist.bench.js
 node bench/assign/extend/proxy-unrestricted.bench.js
+
+echo
+echo '# Property call'
+node bench/call/present/baseline.bench.js
+node bench/call/present/object-create-null.bench.js
+node bench/call/present/object-freeze.bench.js
+node bench/call/present/object-prevent-extensions.bench.js
+node bench/call/present/object-seal.bench.js
+node bench/call/present/proxy-strict.bench.js
+node bench/call/present/proxy-allowlist.bench.js
+node bench/call/present/proxy-denylist.bench.js
+node bench/call/present/proxy-unrestricted.bench.js
+
+echo
+node bench/call/prototype/baseline.bench.js
+node bench/call/prototype/object-create-null.bench.js
+node bench/call/prototype/object-freeze.bench.js
+node bench/call/prototype/object-prevent-extensions.bench.js
+node bench/call/prototype/object-seal.bench.js
+node bench/call/prototype/proxy-strict.bench.js
+node bench/call/prototype/proxy-allowlist.bench.js
+node bench/call/prototype/proxy-denylist.bench.js
+node bench/call/prototype/proxy-unrestricted.bench.js

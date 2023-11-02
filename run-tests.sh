@@ -1,7 +1,7 @@
 #!/bin/sh
 # SPDX-License-Identifier: ISC
 
-OUTFILE='out.txt'
+OUTFILE='test.log'
 
 rm $OUTFILE
 touch $OUTFILE
@@ -42,4 +42,4 @@ echo >>$OUTFILE
 echo '# Proxy (unrestricted)' >>$OUTFILE
 node --test-reporter=./script/reporter.js test/proxy-unrestricted.test.js >>$OUTFILE
 
-node script/converter.js $OUTFILE
+node script/convert-test.js $OUTFILE

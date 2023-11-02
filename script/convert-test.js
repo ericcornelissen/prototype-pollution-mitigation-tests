@@ -5,13 +5,15 @@
  * MarkDown table (and corresponding file) for manual comparison by humans.
  */
 
-import cp from "node:child_process";
 import fs from "node:fs";
 import process from "node:process";
+
+import { preamble } from "./convert-shared.js"
 
 // -----------------------------------------------------------------------------
 
 const NAME_KEY = Symbol();
+const OUT_FILE = "RESULTS.md";
 
 const results = [];
 const testCases = new Set();
@@ -61,11 +63,7 @@ tableBuilder.push(tableDivider.join(" "))
 for (const testCase of testCases) {
   const lineBuilder = [`\`${testCase}\``];
   for (const resultSet of results) {
-    let mark = " ";
-    if (resultSet.get(testCase) === "+") {
-      mark = "X";
-    }
-
+    const mark = resultSet.get(testCase) === "+" ? "X" : " ";
     lineBuilder.push("|", mark);
   }
 
@@ -76,25 +74,19 @@ const table = tableBuilder.join("\n");
 
 // -----------------------------------------------------------------------------
 
-const date = new Date();
-const today = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+const benchResults = fs.readFileSync(OUT_FILE)
+  .toString()
+  .match(/<!-- START:BENCH -->[^]+<!-- END:BENCH -->/gm);
 
-const nodeVersion = cp.execSync("node --version").toString().trim();
+const markdown = `${preamble()}
 
-const markdown = `<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
-<!-- FILE GENERATED, DO NOT EDIT, -->
-
-# Results
-
-This file contains the last recorded test results for this project. It was run
-on ${today} against Node.js ${nodeVersion}.
-
-_This file should not be edited manually, to update it run \`./run-tests.sh\`
-from the root of this project._
-
-## Overview
+<!-- START:TEST -->
+## Functionality
 
 ${table}
+<!-- END:TEST -->
+
+${benchResults}
 `;
 
-fs.writeFileSync("RESULTS.md", markdown);
+fs.writeFileSync(OUT_FILE, markdown);

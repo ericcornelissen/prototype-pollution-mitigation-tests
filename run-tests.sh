@@ -3,7 +3,7 @@
 
 OUTFILE='test.log'
 
-rm $OUTFILE
+rm -f $OUTFILE
 touch $OUTFILE
 
 echo '# Baseline' >>$OUTFILE

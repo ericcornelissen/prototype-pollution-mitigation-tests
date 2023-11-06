@@ -2,6 +2,8 @@
 
 import { runSuite } from "./suite.js";
 
-import { setup } from "../src/proxy-denylist.js"
+export function setup(base) {
+  return [...base];
+}
 
 runSuite(setup);

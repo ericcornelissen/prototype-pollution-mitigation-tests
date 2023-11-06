@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: ISC
 
 export function setup(base) {
-  Object.preventExtensions(Object.prototype);
+  Object.preventExtensions(Object.getPrototypeOf(base));
   return base;
 }

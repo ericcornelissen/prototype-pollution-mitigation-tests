@@ -2,6 +2,6 @@
 
 import { runSuite } from "./suite.js";
 
-import { setup } from "../src/proxy-unrestricted.js"
+import { setup } from "../../src/object-freeze.js"
 
 runSuite(setup);

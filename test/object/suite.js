@@ -8,9 +8,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-// -----------------------------------------------------------------------------
+import { noop, structurallyEqual } from "../shared.js";
 
-const noop = () => void 0;
+// -----------------------------------------------------------------------------
 
 const keys = {
   present: {
@@ -46,7 +46,7 @@ const values = {
   present: {
     number: {
       initial: 201,
-      replace: 202,
+      override: 202,
     },
     string: {
       initial: "foo",
@@ -89,19 +89,6 @@ const base = {
   [keys.present.symbol]: values.present.symbol.initial,
   [keys.present.function]: noop,
 };
-
-// -----------------------------------------------------------------------------
-
-function structurallyEqual(actual, expected, message) {
-  try {
-    assert.equal(actual, expected, message);
-  } catch (error) {
-    const sameStructure = "Values have same structure but are not reference-equal:"
-    if (!error.message.startsWith(sameStructure)) {
-      throw error;
-    }
-  }
-}
 
 // -----------------------------------------------------------------------------
 

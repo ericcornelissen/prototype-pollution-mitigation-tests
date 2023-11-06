@@ -2,6 +2,6 @@
 
 import { runSuite } from "./suite.js";
 
-import { setup } from "../src/plain-object.js"
+import { setup } from "../../src/proxy-denylist.js"
 
 runSuite(setup);

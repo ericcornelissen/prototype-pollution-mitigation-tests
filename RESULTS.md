@@ -4,7 +4,7 @@
 # Results
 
 This file contains the last recorded test results for this project. It was run
-on 2023-11-2 against Node.js v20.8.0.
+on 2023-11-7 against Node.js v20.8.0.
 
 _This file should not be edited manually, to update it run `./run-tests.sh` or
 `/run-benchmarks.sh` from the root of this project._

@@ -2,6 +2,6 @@
 
 import { runSuite } from "./suite.js";
 
-import { setup } from "../src/object-create-null.js"
+import { setup } from "../../src/plain-object.js"
 
 runSuite(setup);

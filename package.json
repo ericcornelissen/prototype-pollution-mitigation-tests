@@ -1,4 +1,5 @@
 {
+  "name": "prototype-pollution-mitigation",
   "private": true,
   "type": "module",
   "devDependencies": {

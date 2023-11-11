@@ -6,8 +6,9 @@ A test suite to test object behavior along with a collection of [Prototype
 Pollution] mitigation implementations in order to compare and contrast them.
 
 Test results are available in [RESULTS.md] (should be up-to-date) or can be
-generated manually using the `./run-tests.sh` script (provided Node.js v20.0.0
-or later is available on the PATH).
+generated manually using the `./run-*.sh` scripts. This requires an appropriate
+version of Node.js is available on the PATH, if not you can use `./container.sh`
+to create an ephemeral container in which you can run the tests.
 
 ## Mitigations
 

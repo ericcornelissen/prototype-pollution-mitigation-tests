@@ -49,6 +49,17 @@ node bench/access/prototype/proxy-denylist.bench.js | tee -a $OUTFILE
 node bench/access/prototype/proxy-unrestricted.bench.js | tee -a $OUTFILE
 
 echo | tee -a $OUTFILE
+node bench/access/for-in/baseline.bench.js | tee -a $OUTFILE
+node bench/access/for-in/object-create-null.bench.js | tee -a $OUTFILE
+node bench/access/for-in/object-freeze.bench.js | tee -a $OUTFILE
+node bench/access/for-in/object-prevent-extensions.bench.js | tee -a $OUTFILE
+node bench/access/for-in/object-seal.bench.js | tee -a $OUTFILE
+node bench/access/for-in/proxy-strict.bench.js | tee -a $OUTFILE
+node bench/access/for-in/proxy-allowlist.bench.js | tee -a $OUTFILE
+node bench/access/for-in/proxy-denylist.bench.js | tee -a $OUTFILE
+node bench/access/for-in/proxy-unrestricted.bench.js | tee -a $OUTFILE
+
+echo | tee -a $OUTFILE
 echo '# Property assignment' | tee -a $OUTFILE
 node bench/assign/override/baseline.bench.js | tee -a $OUTFILE
 node bench/assign/override/object-create-null.bench.js | tee -a $OUTFILE

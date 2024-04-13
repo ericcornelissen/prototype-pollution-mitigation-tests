@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { noop, structurallyEqual } from "../shared.js";
+import { noop, setEqual, structurallyEqual } from "../shared.js";
 
 // -----------------------------------------------------------------------------
 
@@ -184,6 +184,24 @@ export function runSuite(setup) {
 
       await t.test("['constructor']", (t) => {
         structurallyEqual(t.obj["constructor"], Object.getPrototypeOf(base).constructor);
+      });
+
+      await t.test("for-in", (t) => {
+        const expected = new Set([
+          `${keys.present.string}`,
+          `${keys.present.number}`,
+          `${keys.present.function}`,
+          `${keys.prototype.string}`,
+          `${keys.prototype.number}`,
+          `${keys.prototype.function}`,
+        ]);
+
+        const actual = new Set();
+        for (const entry in t.obj) {
+          actual.add(entry);
+        }
+
+        setEqual(actual, expected);
       });
     });
 

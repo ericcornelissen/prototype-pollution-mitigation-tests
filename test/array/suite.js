@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { noop, structurallyEqual } from "../shared.js";
+import { noop, setEqual, structurallyEqual } from "../shared.js";
 
 // -----------------------------------------------------------------------------
 
@@ -61,6 +61,8 @@ export function runSuite(setup) {
       try {
         Array.prototype[keys.prototype.number] = values.prototype.number.initial;
         Array.prototype[keys.prototype.function] = noop;
+
+        delete Array.prototype[keys.extendPrototype.number];
       } catch (_) { }
 
       t.arr = setup([...base]);
@@ -103,6 +105,26 @@ export function runSuite(setup) {
 
       await t.test("['constructor']", (t) => {
         structurallyEqual(t.arr["constructor"], Object.getPrototypeOf(base).constructor);
+      });
+
+      await t.test("for-in", (t) => {
+        const expected = new Set(["0", "1", "100", "101"]);
+
+        const actual = new Set();
+        for (const entry in t.arr) {
+          actual.add(entry);
+        }
+
+        setEqual(actual, expected);
+      });
+
+      await t.test("for-of", (t) => {
+        const actual = [];
+        for (const entry of t.arr) {
+          actual.push(entry);
+        }
+
+        assert.deepEqual(actual, base);
       });
     });
 

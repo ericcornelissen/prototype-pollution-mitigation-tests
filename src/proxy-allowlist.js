@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: ISC
 
-import { isProxyable } from "./_shared.js";
+import { isArray, isProxyable } from "./_shared.js";
 
-const ALLOWLIST = [
+const ALLOWLIST_FOR_OBJECT = [
   "hasOwnProperty",
   "isPrototypeOf",
   "propertyIsEnumerable",
@@ -11,9 +11,54 @@ const ALLOWLIST = [
   "valueOf",
 ];
 
+const ALLOWLIST_FOR_ARRAY = [
+  "at",
+  "concat",
+  "copyWithin",
+  "entries",
+  "every",
+  "fill",
+  "filter",
+  "find",
+  "findIndex",
+  "findLast",
+  "findLastIndex",
+  "flat",
+  "flatMap",
+  "forEach",
+  "includes",
+  "indexOf",
+  "join",
+  "keys",
+  "lastIndexOf",
+  "map",
+  "pop",
+  "reduce",
+  "reduceRight",
+  "reverse",
+  "shift",
+  "slice",
+  "some",
+  "sort",
+  "splice",
+  "toLocaleString",
+  "toReversed",
+  "toSorted",
+  "toSpliced",
+  "toString",
+  "unshift",
+  "values",
+  "with",
+];
+
 export function setup(base) {
   if (!isProxyable(base)) {
     return base;
+  }
+
+  let allowlist = ALLOWLIST_FOR_OBJECT;
+  if (isArray(base)) {
+    allowlist = ALLOWLIST_FOR_ARRAY;
   }
 
   return new Proxy(base, {
@@ -24,7 +69,7 @@ export function setup(base) {
       }
 
       /// Allow predefined properties
-      if (ALLOWLIST.includes(property)) {
+      if (allowlist.includes(property)) {
         return setup(target[property]);
       }
 

@@ -21,13 +21,20 @@ const benchResults = fs.readFileSync(srcFile).toString().trim();
 
 // -----------------------------------------------------------------------------
 
-const testResults = fs.readFileSync(OUT_FILE)
+const testObjResults = fs.readFileSync(OUT_FILE)
   .toString()
-  .match(/<!-- START:TEST -->[^]+<!-- END:TEST -->/gm);
+  .match(/<!-- START:TEST:obj -->[^]+<!-- END:TEST:obj -->/gm);
+const testArrResults = fs.readFileSync(OUT_FILE)
+  .toString()
+  .match(/<!-- START:TEST:arr -->[^]+<!-- END:TEST:arr -->/gm);
 
 const markdown = `${preamble()}
 
-${testResults}
+## Functionality
+
+${testObjResults}
+
+${testArrResults}
 
 <!-- START:BENCH -->
 ## Benchmark

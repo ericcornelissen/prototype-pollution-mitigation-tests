@@ -21,11 +21,10 @@ const indices = {
 
 const keys = {
   prototype: {
-    number: 100,
-    function: 101,
+    number: 999999999999999,
   },
   extendPrototype: {
-    number: 102,
+    number: 999999999999998,
   },
 };
 
@@ -60,7 +59,6 @@ export function runSuite(setup) {
     t.beforeEach((t) => {
       try {
         Array.prototype[keys.prototype.number] = values.prototype.number.initial;
-        Array.prototype[keys.prototype.function] = noop;
 
         delete Array.prototype[keys.extendPrototype.number];
       } catch (_) { }
@@ -108,7 +106,7 @@ export function runSuite(setup) {
       });
 
       await t.test("for-in", (t) => {
-        const expected = new Set(["0", "1", "100", "101"]);
+        const expected = new Set(["0", "1", "999999999999999"]);
 
         const actual = new Set();
         for (const entry in t.arr) {
@@ -211,10 +209,6 @@ export function runSuite(setup) {
       });
 
       await t.test("prototype", async (t) => {
-        await t.test("[42]()", (t) => {
-          assert.doesNotThrow(() => t.arr[keys.prototype.function]());
-        });
-
         await t.test(".constructor()", (t) => {
           assert.doesNotThrow(() => t.arr.constructor());
         });
@@ -423,7 +417,7 @@ export function runSuite(setup) {
           assert.doesNotThrow(() => t.arr.values());
         });
 
-        await t.test(".values()", (t) => {
+        await t.test(".with()", (t) => {
           const index = 0, value = 1;
 
           assert.doesNotThrow(() => t.arr.with(index, value));

@@ -18,9 +18,11 @@ const OUT_FILE = "RESULTS.md";
 const results = [];
 const testCases = new Set();
 
+const test = process.argv[2];
+
 // -----------------------------------------------------------------------------
 
-const srcFile = process.argv[2];
+const srcFile = process.argv[3];
 const lines = fs.readFileSync(srcFile).toString().split(/\n/);
 for (const line of lines) {
   if (line.length === 0) {
@@ -74,19 +76,49 @@ const table = tableBuilder.join("\n");
 
 // -----------------------------------------------------------------------------
 
+const testObjResults = fs.readFileSync(OUT_FILE)
+  .toString()
+  .match(/<!-- START:TEST:obj -->[^]+<!-- END:TEST:obj -->/gm);
+const testArrResults = fs.readFileSync(OUT_FILE)
+  .toString()
+  .match(/<!-- START:TEST:arr -->[^]+<!-- END:TEST:arr -->/gm);
 const benchResults = fs.readFileSync(OUT_FILE)
   .toString()
   .match(/<!-- START:BENCH -->[^]+<!-- END:BENCH -->/gm);
 
-const markdown = `${preamble()}
+let markdown;
+if (test === "obj") {
+  markdown = `${preamble()}
 
-<!-- START:TEST -->
 ## Functionality
 
+<!-- START:TEST:obj -->
+### Object
+
 ${table}
-<!-- END:TEST -->
+<!-- END:TEST:obj -->
+
+${testArrResults}
 
 ${benchResults}
 `;
+} else if (test === "arr") {
+  markdown = `${preamble()}
+
+## Functionality
+
+${testObjResults}
+
+<!-- START:TEST:arr -->
+### Array
+
+${table}
+<!-- END:TEST:arr -->
+
+${benchResults}
+`;
+} else {
+  throw new Error(`Unknown test type '${test}'`);
+}
 
 fs.writeFileSync(OUT_FILE, markdown);

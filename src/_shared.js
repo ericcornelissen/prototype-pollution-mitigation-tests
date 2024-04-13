@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: ISC
 
+export function isArray(value) {
+  return Array.isArray(value);
+}
+
 export function isNil(value) {
   return value === null || value === undefined;
 }

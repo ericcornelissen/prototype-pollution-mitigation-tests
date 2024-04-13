@@ -42,4 +42,42 @@ echo >>$OUTFILE
 echo '# Proxy (unrestricted)' >>$OUTFILE
 node --test-reporter=./script/reporter.js test/object/proxy-unrestricted.test.js >>$OUTFILE
 
-node script/convert-test.js $OUTFILE
+node script/convert-test.js obj $OUTFILE
+
+
+rm -f $OUTFILE
+touch $OUTFILE
+
+echo '# Baseline' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/baseline.test.js >>$OUTFILE
+
+# TODO: crashes; `Object.freeze` is too invasive for the testing framework?
+echo >>$OUTFILE
+echo '# Object.freeze' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/object-freeze.test.js >>$OUTFILE
+
+echo >>$OUTFILE
+echo '# Object.preventExtension' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/object-prevent-extensions.test.js >>$OUTFILE
+
+echo >>$OUTFILE
+echo '# Object.seal' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/object-seal.test.js >>$OUTFILE
+
+echo >>$OUTFILE
+echo '# Proxy (strict)' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/proxy-strict.test.js >>$OUTFILE
+
+echo >>$OUTFILE
+echo '# Proxy (allowlist)' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/proxy-allowlist.test.js >>$OUTFILE
+
+echo >>$OUTFILE
+echo '# Proxy (denylist)' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/proxy-denylist.test.js >>$OUTFILE
+
+echo >>$OUTFILE
+echo '# Proxy (unrestricted)' >>$OUTFILE
+node --test-reporter=./script/reporter.js test/array/proxy-unrestricted.test.js >>$OUTFILE
+
+node script/convert-test.js arr $OUTFILE

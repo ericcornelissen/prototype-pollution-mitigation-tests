@@ -9,8 +9,10 @@ on 2024-4-13 against Node.js v20.8.0.
 _This file should not be edited manually, to update it run `./run-tests.sh` or
 `/run-benchmarks.sh` from the root of this project._
 
-<!-- START:TEST -->
 ## Functionality
+
+<!-- START:TEST:obj -->
+### Object
 
 test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy (strict) | Proxy (allowlist) | Proxy (denylist) | Proxy (unrestricted)
 --- | --- | --- | --- | --- | --- | --- | --- | ---
@@ -30,7 +32,7 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>access>['__proto__']` | X |   | X | X |   |   |   |  
 `obj>access>.constructor` | X |   | X | X |   |   |   | X
 `obj>access>['constructor']` | X |   | X | X |   |   |   | X
-`obj>access>for-in` | X |   | X | X |   | X | X | X
+`obj>access>for-in` | X |   | X | X | X | X | X | X
 `obj>assign>override>.x` | X | X | X | X | X | X | X | X
 `obj>assign>override>['x']` | X | X | X | X | X | X | X | X
 `obj>assign>override>[42]` | X | X | X | X | X | X | X | X
@@ -86,7 +88,79 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>call>prototype>.toLocaleString()` | X |   | X | X |   | X | X | X
 `obj>call>prototype>.toString()` | X |   | X | X |   | X | X | X
 `obj>call>prototype>.valueOf()` | X |   | X | X |   | X | X | X
-<!-- END:TEST -->
+<!-- END:TEST:obj -->
+
+<!-- START:TEST:arr -->
+### Array
+
+test | Baseline | Object.freeze | Object.preventExtension | Object.seal | Proxy (strict) | Proxy (allowlist) | Proxy (denylist) | Proxy (unrestricted)
+--- | --- | --- | --- | --- | --- | --- | --- | ---
+`arr>access>present>[42]` | X | X | X | X | X | X | X | X
+`arr>access>absent>[42]` | X | X | X | X | X | X | X | X
+`arr>access>prototype>[42]` | X | X | X | X |   |   | X | X
+`arr>access>.length` | X | X | X | X | X | X | X | X
+`arr>access>.__proto__` | X | X | X | X |   |   |   |  
+`arr>access>['__proto__']` | X | X | X | X |   |   |   |  
+`arr>access>.constructor` | X | X | X | X |   |   |   | X
+`arr>access>['constructor']` | X | X | X | X |   |   |   | X
+`arr>access>for-in` | X | X | X | X | X | X | X | X
+`arr>access>for-of` | X | X | X | X |   |   |   |  
+`arr>assign>override>[42]` | X | X | X | X | X | X | X | X
+`arr>assign>override>.__proto__[42]` | X |   | X | X |   |   |   |  
+`arr>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   |  
+`arr>assign>delete>[42]` | X | X | X | X | X | X | X | X
+`arr>assign>delete>.__proto__[42]` | X |   | X |   |   |   |   |  
+`arr>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   |  
+`arr>assign>extend>[42]` | X | X | X | X | X | X | X | X
+`arr>assign>extend>.__proto__[42]` | X |   |   |   |   |   |   |  
+`arr>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   |  
+`arr>assign>.__proto__` | X | X | X | X | X | X | X | X
+`arr>assign>['__proto__']` | X | X | X | X | X | X | X | X
+`arr>assign>.constructor` | X |   | X | X | X | X | X | X
+`arr>assign>['constructor']` | X |   | X | X | X | X | X | X
+`arr>call>present>[42]()` | X | X | X | X | X | X | X | X
+`arr>call>prototype>.constructor()` | X | X | X | X |   |   |   | X
+`arr>call>prototype>[@@iterator]()` | X | X | X | X |   |   | X | X
+`arr>call>prototype>.at()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.concat()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.copyWithin()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.entries()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.every()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.fill()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.filter()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.find()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.findIndex()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.findLast()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.findLastIndex()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.flat()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.flatMap()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.forEach()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.includes()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.indexOf()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.join()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.keys()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.lastIndexOf()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.map()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.pop()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.push()` | X | X | X | X |   |   | X | X
+`arr>call>prototype>.reduce()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.reduceRight()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.reverse()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.shift()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.slice()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.some()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.sort()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.splice()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.toLocaleString()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.toReversed()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.toSorted()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.toSpliced()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.toString()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.unshift()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.values()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.with()` | X | X | X | X |   | X | X | X
+`arr>Array.isArray()` | X | X | X | X | X | X | X | X
+<!-- END:TEST:arr -->
 
 <!-- START:BENCH -->
 ## Benchmark

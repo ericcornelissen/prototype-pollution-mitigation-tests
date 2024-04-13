@@ -120,6 +120,35 @@ still affected by polluted properties.
 An open question with this mitigation is whether [primitive] values can be
 vulnerable to prototype pollution.
 
+### Alternative Mitigations
+
+There are more mitigations that exist, but these fall outside the scope of this
+project (i.e. they can't be evaluated within the context of this project).
+
+#### `Map`
+
+A [`Map`] can be used instead of an object, especially when the intended use of
+the object is to map arbitrary keys to values. A `Map` cannot be used as a
+drop-in replacement for an object because it has a distinct API.
+
+The benefits of using a `Map` is that it is unaffected by prototype pollution
+and prevents polluting the prototype as well.
+
+The drawbacks of using a `Map` is that it's not a drop-in replacement and that
+it does not necessarily make sense in all scenarios.
+
+#### Linting
+
+Linters can be used to warn about patterns that are prone to lead to or be
+affected by prototype pollution. The benefit of using linters is that there is
+no runtime impact, the drawback is that it is unlikely to be 100% accurate.
+
+- [ESLint rule `no-prototype-builtins`] - Disallows using standard (builtin)
+  prototype functions indirectly (e.g. `foo.hasOwnProperty()`). This helps with
+  adopting the `Object.create(null)` mitigation.
+- [`eslint-plugin-security/detect-object-injection`] - Disallows non-literal
+  object entry lookup or assignment to prevent prototype pollution.
+
 ## License
 
 The source code is licensed under the `ISC` license, see [LICENSE] for the full
@@ -133,9 +162,13 @@ license.
 [prototype pollution]: https://portswigger.net/web-security/prototype-pollution
 [results.md]: ./RESULTS.md
 
+[`map`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
 [`object.create`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
 [`object.freeze`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 [`object.hasown`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn
 [`object.preventextension`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions
 [`object.seal`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal
 [`proxy`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+
+[eslint rule `no-prototype-builtins`]: https://eslint.org/docs/latest/rules/no-prototype-builtins
+[`eslint-plugin-security/detect-object-injection`]: https://github.com/eslint-community/eslint-plugin-security/blob/5a258c20b4394b6265b8e5a826b57b0c92a1c1f9/docs/rules/detect-object-injection.md

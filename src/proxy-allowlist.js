@@ -49,6 +49,7 @@ const ALLOWLIST_FOR_ARRAY = [
   "unshift",
   "values",
   "with",
+  Symbol.iterator,
 ];
 
 export function setup(base) {

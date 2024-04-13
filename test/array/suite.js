@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { noop, setEqual, structurallyEqual } from "../shared.js";
+import { arrayEqual, noop, setEqual, structurallyEqual } from "../shared.js";
 
 // -----------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ export function runSuite(setup) {
           actual.push(entry);
         }
 
-        assert.deepEqual(actual, base);
+        arrayEqual(actual, base);
       });
     });
 

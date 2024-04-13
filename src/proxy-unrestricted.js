@@ -11,14 +11,21 @@ export function setup(base) {
     get(target, property, _proxy) {
       /// Allow own properties
       if (Object.hasOwn(target, property)) {
+        const descriptor = Reflect.getOwnPropertyDescriptor(target, property);
+        if (descriptor.configurable === false && descriptor.writable === false) {
+          return target[property];
+        }
+
         return setup(target[property]);
       }
 
       /// Allow inherited properties
-      const prototype = Object.getPrototypeOf(target);
-      if (!isNil(property)) {
+      let prototype = Object.getPrototypeOf(target);
+      while (!isNil(prototype)) {
         if (Object.hasOwn(prototype, property)) {
           return setup(prototype[property]);
+        } else {
+          prototype = Object.getPrototypeOf(prototype);
         }
       }
 

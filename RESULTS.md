@@ -41,10 +41,10 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>assign>override>.__proto__['x']` | X |   | X | X |   |   |   |  
 `obj>assign>override>.__proto__[42]` | X |   | X | X |   |   |   |  
 `obj>assign>override>.__proto__[Symbol]` | X |   | X | X |   |   |   |  
-`obj>assign>override>.constructor.prototype.x` | X |   | X | X |   |   |   |  
-`obj>assign>override>.constructor.prototype['x']` | X |   | X | X |   |   |   |  
-`obj>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   |  
-`obj>assign>override>.constructor.prototype[Symbol]` | X |   | X | X |   |   |   |  
+`obj>assign>override>.constructor.prototype.x` | X |   | X | X |   |   |   | X
+`obj>assign>override>.constructor.prototype['x']` | X |   | X | X |   |   |   | X
+`obj>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   | X
+`obj>assign>override>.constructor.prototype[Symbol]` | X |   | X | X |   |   |   | X
 `obj>assign>delete>.x` | X | X | X | X | X | X | X | X
 `obj>assign>delete>['x']` | X | X | X | X | X | X | X | X
 `obj>assign>delete>[42]` | X | X | X | X | X | X | X | X
@@ -53,10 +53,10 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>assign>delete>.__proto__['x']` | X |   | X |   |   |   |   |  
 `obj>assign>delete>.__proto__[42]` | X |   | X |   |   |   |   |  
 `obj>assign>delete>.__proto__[Symbol]` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.constructor.prototype.x` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.constructor.prototype['x']` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.constructor.prototype[Symbol]` | X |   | X |   |   |   |   |  
+`obj>assign>delete>.constructor.prototype.x` | X |   | X |   |   |   |   | X
+`obj>assign>delete>.constructor.prototype['x']` | X |   | X |   |   |   |   | X
+`obj>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   | X
+`obj>assign>delete>.constructor.prototype[Symbol]` | X |   | X |   |   |   |   | X
 `obj>assign>extend>.x` | X | X | X | X | X | X | X | X
 `obj>assign>extend>['x']` | X | X | X | X | X | X | X | X
 `obj>assign>extend>[42]` | X | X | X | X | X | X | X | X
@@ -65,10 +65,10 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>assign>extend>.__proto__['x']` | X |   |   |   |   |   |   |  
 `obj>assign>extend>.__proto__[42]` | X |   |   |   |   |   |   |  
 `obj>assign>extend>.__proto__[Symbol]` | X |   |   |   |   |   |   |  
-`obj>assign>extend>.constructor.prototype.x` | X |   |   |   |   |   |   |  
-`obj>assign>extend>.constructor.prototype['x']` | X |   |   |   |   |   |   |  
-`obj>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   |  
-`obj>assign>extend>.constructor.prototype[Symbol]` | X |   |   |   |   |   |   |  
+`obj>assign>extend>.constructor.prototype.x` | X |   |   |   |   |   |   | X
+`obj>assign>extend>.constructor.prototype['x']` | X |   |   |   |   |   |   | X
+`obj>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   | X
+`obj>assign>extend>.constructor.prototype[Symbol]` | X |   |   |   |   |   |   | X
 `obj>assign>.__proto__` | X | X | X | X | X | X | X | X
 `obj>assign>['__proto__']` | X | X | X | X | X | X | X | X
 `obj>assign>.constructor` | X | X | X | X | X | X | X | X
@@ -104,54 +104,54 @@ test | Baseline | Object.freeze | Object.preventExtension | Object.seal | Proxy 
 `arr>access>.constructor` | X | X | X | X |   |   |   | X
 `arr>access>['constructor']` | X | X | X | X |   |   |   | X
 `arr>access>for-in` | X | X | X | X | X | X | X | X
-`arr>access>for-of` | X | X | X | X |   |   |   |  
+`arr>access>for-of` | X | X | X | X |   | X | X | X
 `arr>assign>override>[42]` | X | X | X | X | X | X | X | X
 `arr>assign>override>.__proto__[42]` | X |   | X | X |   |   |   |  
-`arr>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   |  
+`arr>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   | X
 `arr>assign>delete>[42]` | X | X | X | X | X | X | X | X
 `arr>assign>delete>.__proto__[42]` | X |   | X |   |   |   |   |  
-`arr>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   |  
+`arr>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   | X
 `arr>assign>extend>[42]` | X | X | X | X | X | X | X | X
 `arr>assign>extend>.__proto__[42]` | X |   |   |   |   |   |   |  
-`arr>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   |  
+`arr>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   | X
 `arr>assign>.__proto__` | X | X | X | X | X | X | X | X
 `arr>assign>['__proto__']` | X | X | X | X | X | X | X | X
 `arr>assign>.constructor` | X |   | X | X | X | X | X | X
 `arr>assign>['constructor']` | X |   | X | X | X | X | X | X
 `arr>call>present>[42]()` | X | X | X | X | X | X | X | X
 `arr>call>prototype>.constructor()` | X | X | X | X |   |   |   | X
-`arr>call>prototype>[@@iterator]()` | X | X | X | X |   |   | X | X
+`arr>call>prototype>[@@iterator]()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.at()` | X | X | X | X |   | X | X | X
-`arr>call>prototype>.concat()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.concat()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.copyWithin()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.entries()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.every()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.fill()` | X | X | X | X |   | X | X | X
-`arr>call>prototype>.filter()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.filter()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.find()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.findIndex()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.findLast()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.findLastIndex()` | X | X | X | X |   | X | X | X
-`arr>call>prototype>.flat()` | X | X | X | X |   | X | X |  
-`arr>call>prototype>.flatMap()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.flat()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.flatMap()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.forEach()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.includes()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.indexOf()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.join()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.keys()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.lastIndexOf()` | X | X | X | X |   | X | X | X
-`arr>call>prototype>.map()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.map()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.pop()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.push()` | X | X | X | X |   |   | X | X
 `arr>call>prototype>.reduce()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.reduceRight()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.reverse()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.shift()` | X | X | X | X |   | X | X | X
-`arr>call>prototype>.slice()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.slice()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.some()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.sort()` | X | X | X | X |   | X | X | X
-`arr>call>prototype>.splice()` | X | X | X | X |   | X | X |  
-`arr>call>prototype>.toLocaleString()` | X | X | X | X |   | X | X |  
+`arr>call>prototype>.splice()` | X | X | X | X |   | X | X | X
+`arr>call>prototype>.toLocaleString()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.toReversed()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.toSorted()` | X | X | X | X |   | X | X | X
 `arr>call>prototype>.toSpliced()` | X | X | X | X |   | X | X | X
@@ -170,101 +170,101 @@ benchmark results.
 
 ```
 # Object creation
-obj>create - Baseline x 135,916,393 ops/sec ±1.25% (96 runs sampled)
-obj>create - Object.create x 9,083,379 ops/sec ±0.69% (93 runs sampled)
-obj>create - Object.freeze x 35,761,736 ops/sec ±0.18% (99 runs sampled)
-obj>create - Object.preventExtensions x 78,081,214 ops/sec ±0.99% (97 runs sampled)
-obj>create - Object.seal x 42,591,967 ops/sec ±0.63% (94 runs sampled)
-obj>create - Proxy (strict) x 72,913,345 ops/sec ±2.78% (91 runs sampled)
-obj>create - Proxy (allowlist) x 76,188,511 ops/sec ±1.27% (94 runs sampled)
-obj>create - Proxy (denylist) x 74,243,310 ops/sec ±2.18% (92 runs sampled)
-obj>create - Proxy (unrestricted) x 75,085,540 ops/sec ±1.73% (96 runs sampled)
+obj>create - Baseline x 136,279,389 ops/sec ±0.61% (93 runs sampled)
+obj>create - Object.create x 9,220,971 ops/sec ±0.85% (92 runs sampled)
+obj>create - Object.freeze x 35,231,816 ops/sec ±0.69% (96 runs sampled)
+obj>create - Object.preventExtensions x 78,380,188 ops/sec ±1.93% (97 runs sampled)
+obj>create - Object.seal x 43,096,647 ops/sec ±0.42% (98 runs sampled)
+obj>create - Proxy (strict) x 74,708,400 ops/sec ±1.82% (95 runs sampled)
+obj>create - Proxy (allowlist) x 61,903,735 ops/sec ±2.03% (91 runs sampled)
+obj>create - Proxy (denylist) x 74,121,471 ops/sec ±2.24% (93 runs sampled)
+obj>create - Proxy (unrestricted) x 70,583,105 ops/sec ±3.26% (88 runs sampled)
 
 # Property access
-obj>access>present>['x'] - Baseline x 1,394,328,571 ops/sec ±0.16% (100 runs sampled)
-obj>access>present>['x'] - Object.create x 138,659,790 ops/sec ±4.03% (92 runs sampled)
-obj>access>present>['x'] - Object.freeze x 1,389,297,781 ops/sec ±0.14% (98 runs sampled)
-obj>access>present>['x'] - Object.preventExtensions x 1,382,436,470 ops/sec ±0.14% (96 runs sampled)
-obj>access>present>['x'] - Object.seal x 1,402,166,535 ops/sec ±0.19% (97 runs sampled)
-obj>access>present>['x'] - Proxy (strict) x 26,937,024 ops/sec ±0.46% (97 runs sampled)
-obj>access>present>['x'] - Proxy (allowlist) x 27,228,680 ops/sec ±0.44% (91 runs sampled)
-obj>access>present>['x'] - Proxy (denylist) x 27,115,944 ops/sec ±0.88% (95 runs sampled)
-obj>access>present>['x'] - Proxy (unrestricted) x 27,007,603 ops/sec ±0.44% (97 runs sampled)
+obj>access>present>['x'] - Baseline x 1,389,850,401 ops/sec ±0.19% (97 runs sampled)
+obj>access>present>['x'] - Object.create x 141,123,525 ops/sec ±0.74% (96 runs sampled)
+obj>access>present>['x'] - Object.freeze x 1,386,699,705 ops/sec ±0.22% (96 runs sampled)
+obj>access>present>['x'] - Object.preventExtensions x 1,388,815,921 ops/sec ±0.12% (96 runs sampled)
+obj>access>present>['x'] - Object.seal x 1,395,918,219 ops/sec ±0.18% (99 runs sampled)
+obj>access>present>['x'] - Proxy (strict) x 26,564,162 ops/sec ±0.32% (96 runs sampled)
+obj>access>present>['x'] - Proxy (allowlist) x 26,727,743 ops/sec ±0.79% (95 runs sampled)
+obj>access>present>['x'] - Proxy (denylist) x 26,653,312 ops/sec ±0.40% (95 runs sampled)
+obj>access>present>['x'] - Proxy (unrestricted) x 15,934,912 ops/sec ±0.49% (93 runs sampled)
 
-obj>access>absent>['x'] - Baseline x 1,402,509,306 ops/sec ±0.12% (97 runs sampled)
-obj>access>absent>['x'] - Object.create x 119,818,099 ops/sec ±1.33% (96 runs sampled)
-obj>access>absent>['x'] - Object.freeze x 1,398,183,524 ops/sec ±0.15% (100 runs sampled)
-obj>access>absent>['x'] - Object.preventExtensions x 1,409,231,668 ops/sec ±0.08% (98 runs sampled)
-obj>access>absent>['x'] - Object.seal x 1,387,315,068 ops/sec ±0.17% (97 runs sampled)
-obj>access>absent>['x'] - Proxy (strict) x 33,461,314 ops/sec ±0.80% (95 runs sampled)
-obj>access>absent>['x'] - Proxy (allowlist) x 25,694,573 ops/sec ±1.02% (92 runs sampled)
-obj>access>absent>['x'] - Proxy (denylist) x 27,247,156 ops/sec ±0.46% (96 runs sampled)
-obj>access>absent>['x'] - Proxy (unrestricted) x 19,828,480 ops/sec ±0.51% (94 runs sampled)
+obj>access>absent>['x'] - Baseline x 1,389,862,125 ops/sec ±0.25% (95 runs sampled)
+obj>access>absent>['x'] - Object.create x 123,260,908 ops/sec ±0.19% (99 runs sampled)
+obj>access>absent>['x'] - Object.freeze x 1,398,225,286 ops/sec ±0.16% (97 runs sampled)
+obj>access>absent>['x'] - Object.preventExtensions x 1,401,564,226 ops/sec ±0.16% (94 runs sampled)
+obj>access>absent>['x'] - Object.seal x 1,397,444,447 ops/sec ±0.21% (95 runs sampled)
+obj>access>absent>['x'] - Proxy (strict) x 33,832,570 ops/sec ±0.56% (96 runs sampled)
+obj>access>absent>['x'] - Proxy (allowlist) x 26,516,110 ops/sec ±0.51% (95 runs sampled)
+obj>access>absent>['x'] - Proxy (denylist) x 22,160,376 ops/sec ±0.41% (92 runs sampled)
+obj>access>absent>['x'] - Proxy (unrestricted) x 15,360,213 ops/sec ±0.81% (92 runs sampled)
 
-obj>access>prototype>['x'] - Baseline x 1,390,418,974 ops/sec ±0.16% (98 runs sampled)
-obj>access>prototype>['x'] - Object.freeze x 1,399,265,679 ops/sec ±0.24% (96 runs sampled)
-obj>access>prototype>['x'] - Object.preventExtensions x 1,393,729,679 ops/sec ±0.25% (97 runs sampled)
-obj>access>prototype>['x'] - Object.seal x 1,403,706,350 ops/sec ±0.18% (96 runs sampled)
-obj>access>prototype>['x'] - Proxy (denylist) x 27,145,223 ops/sec ±0.35% (97 runs sampled)
-obj>access>prototype>['x'] - Proxy (unrestricted) x 20,830,912 ops/sec ±1.07% (94 runs sampled)
+obj>access>prototype>['x'] - Baseline x 1,392,295,110 ops/sec ±0.15% (99 runs sampled)
+obj>access>prototype>['x'] - Object.freeze x 1,397,817,851 ops/sec ±0.17% (99 runs sampled)
+obj>access>prototype>['x'] - Object.preventExtensions x 1,410,508,399 ops/sec ±0.12% (97 runs sampled)
+obj>access>prototype>['x'] - Object.seal x 1,410,274,254 ops/sec ±0.09% (101 runs sampled)
+obj>access>prototype>['x'] - Proxy (denylist) x 26,748,875 ops/sec ±1.75% (91 runs sampled)
+obj>access>prototype>['x'] - Proxy (unrestricted) x 20,339,922 ops/sec ±0.67% (93 runs sampled)
 
-obj>access>absent>for-in - Baseline x 155,005,759 ops/sec ±0.42% (97 runs sampled)
-obj>access>absent>for-in - Object.create x 7,506,894 ops/sec ±0.56% (98 runs sampled)
-obj>access>absent>for-in - Object.freeze x 151,582,224 ops/sec ±0.59% (94 runs sampled)
-obj>access>absent>for-in - Object.preventExtensions x 152,058,357 ops/sec ±0.39% (94 runs sampled)
-obj>access>absent>for-in - Object.seal x 152,592,287 ops/sec ±0.73% (98 runs sampled)
-obj>access>absent>for-in - Proxy (strict) x 1,741,113 ops/sec ±0.33% (96 runs sampled)
-obj>access>absent>for-in - Proxy (allowlist) x 1,700,883 ops/sec ±0.36% (97 runs sampled)
-obj>access>absent>for-in - Proxy (denylist) x 1,673,905 ops/sec ±1.19% (94 runs sampled)
-obj>access>absent>for-in - Proxy (unrestricted) x 1,714,280 ops/sec ±0.43% (96 runs sampled)
+obj>access>absent>for-in - Baseline x 154,201,442 ops/sec ±0.18% (95 runs sampled)
+obj>access>absent>for-in - Object.create x 7,394,124 ops/sec ±0.44% (93 runs sampled)
+obj>access>absent>for-in - Object.freeze x 153,409,127 ops/sec ±0.61% (95 runs sampled)
+obj>access>absent>for-in - Object.preventExtensions x 156,034,837 ops/sec ±0.24% (97 runs sampled)
+obj>access>absent>for-in - Object.seal x 154,901,504 ops/sec ±0.14% (96 runs sampled)
+obj>access>absent>for-in - Proxy (strict) x 1,737,787 ops/sec ±0.27% (95 runs sampled)
+obj>access>absent>for-in - Proxy (allowlist) x 1,740,246 ops/sec ±0.31% (96 runs sampled)
+obj>access>absent>for-in - Proxy (denylist) x 1,719,117 ops/sec ±0.26% (97 runs sampled)
+obj>access>absent>for-in - Proxy (unrestricted) x 1,503,293 ops/sec ±0.31% (97 runs sampled)
 
 # Property assignment
-obj>assign>override>['x'] - Baseline x 222,224,090 ops/sec ±0.23% (99 runs sampled)
-obj>assign>override>['x'] - Object.create x 124,217,041 ops/sec ±0.79% (96 runs sampled)
-obj>assign>override>['x'] - Object.freeze x 223,585,584 ops/sec ±0.16% (97 runs sampled)
-obj>assign>override>['x'] - Object.preventExtensions x 222,747,627 ops/sec ±0.32% (95 runs sampled)
-obj>assign>override>['x'] - Object.seal x 222,679,757 ops/sec ±0.15% (96 runs sampled)
-obj>assign>override>['x'] - Proxy (strict) x 3,253,336 ops/sec ±0.55% (94 runs sampled)
-obj>assign>override>['x'] - Proxy (allowlist) x 3,287,610 ops/sec ±0.37% (96 runs sampled)
-obj>assign>override>['x'] - Proxy (denylist) x 3,272,541 ops/sec ±0.34% (99 runs sampled)
-obj>assign>override>['x'] - Proxy (unrestricted) x 3,291,297 ops/sec ±0.28% (97 runs sampled)
+obj>assign>override>['x'] - Baseline x 227,988,023 ops/sec ±0.10% (97 runs sampled)
+obj>assign>override>['x'] - Object.create x 126,071,352 ops/sec ±0.23% (97 runs sampled)
+obj>assign>override>['x'] - Object.freeze x 225,635,235 ops/sec ±0.17% (93 runs sampled)
+obj>assign>override>['x'] - Object.preventExtensions x 224,877,799 ops/sec ±0.17% (99 runs sampled)
+obj>assign>override>['x'] - Object.seal x 225,197,918 ops/sec ±0.12% (93 runs sampled)
+obj>assign>override>['x'] - Proxy (strict) x 3,296,035 ops/sec ±0.31% (94 runs sampled)
+obj>assign>override>['x'] - Proxy (allowlist) x 3,303,468 ops/sec ±0.25% (98 runs sampled)
+obj>assign>override>['x'] - Proxy (denylist) x 3,305,913 ops/sec ±0.29% (97 runs sampled)
+obj>assign>override>['x'] - Proxy (unrestricted) x 3,290,309 ops/sec ±0.24% (98 runs sampled)
 
-obj>assign>delete>['x'] - Baseline x 12,271,718 ops/sec ±0.99% (93 runs sampled)
-obj>assign>delete>['x'] - Object.create x 18,003,924 ops/sec ±1.00% (96 runs sampled)
-obj>assign>delete>['x'] - Object.freeze x 12,264,175 ops/sec ±1.19% (90 runs sampled)
-obj>assign>delete>['x'] - Object.preventExtensions x 12,408,537 ops/sec ±0.64% (95 runs sampled)
-obj>assign>delete>['x'] - Object.seal x 12,556,603 ops/sec ±0.73% (92 runs sampled)
-obj>assign>delete>['x'] - Proxy (strict) x 2,103,362 ops/sec ±0.20% (96 runs sampled)
-obj>assign>delete>['x'] - Proxy (allowlist) x 2,019,797 ops/sec ±0.94% (97 runs sampled)
-obj>assign>delete>['x'] - Proxy (denylist) x 2,094,718 ops/sec ±0.56% (94 runs sampled)
-obj>assign>delete>['x'] - Proxy (unrestricted) x 2,092,579 ops/sec ±0.31% (96 runs sampled)
+obj>assign>delete>['x'] - Baseline x 12,569,125 ops/sec ±0.55% (95 runs sampled)
+obj>assign>delete>['x'] - Object.create x 18,753,059 ops/sec ±0.46% (96 runs sampled)
+obj>assign>delete>['x'] - Object.freeze x 12,447,857 ops/sec ±0.53% (93 runs sampled)
+obj>assign>delete>['x'] - Object.preventExtensions x 12,677,417 ops/sec ±0.53% (93 runs sampled)
+obj>assign>delete>['x'] - Object.seal x 12,545,581 ops/sec ±0.54% (92 runs sampled)
+obj>assign>delete>['x'] - Proxy (strict) x 2,114,734 ops/sec ±0.23% (99 runs sampled)
+obj>assign>delete>['x'] - Proxy (allowlist) x 2,092,532 ops/sec ±0.20% (97 runs sampled)
+obj>assign>delete>['x'] - Proxy (denylist) x 2,100,982 ops/sec ±0.19% (99 runs sampled)
+obj>assign>delete>['x'] - Proxy (unrestricted) x 1,957,802 ops/sec ±0.24% (99 runs sampled)
 
-obj>assign>extend>['x'] - Baseline x 87,137,628 ops/sec ±13.98% (91 runs sampled)
-obj>assign>extend>['x'] - Object.create x 86,836,835 ops/sec ±12.32% (91 runs sampled)
-obj>assign>extend>['x'] - Object.freeze x 31,343,166 ops/sec ±29.96% (85 runs sampled)
-obj>assign>extend>['x'] - Object.preventExtensions x 90,248,583 ops/sec ±13.79% (89 runs sampled)
-obj>assign>extend>['x'] - Object.seal x 87,788,822 ops/sec ±14.33% (88 runs sampled)
-obj>assign>extend>['x'] - Proxy (strict) x 2,372,712 ops/sec ±4.97% (84 runs sampled)
-obj>assign>extend>['x'] - Proxy (allowlist) x 2,385,932 ops/sec ±4.14% (85 runs sampled)
-obj>assign>extend>['x'] - Proxy (denylist) x 2,365,324 ops/sec ±4.88% (85 runs sampled)
-obj>assign>extend>['x'] - Proxy (unrestricted) x 2,189,915 ops/sec ±4.45% (85 runs sampled)
+obj>assign>extend>['x'] - Baseline x 94,248,317 ops/sec ±12.74% (92 runs sampled)
+obj>assign>extend>['x'] - Object.create x 92,701,800 ops/sec ±14.31% (88 runs sampled)
+obj>assign>extend>['x'] - Object.freeze x 34,833,459 ops/sec ±31.27% (86 runs sampled)
+obj>assign>extend>['x'] - Object.preventExtensions x 88,796,594 ops/sec ±15.22% (87 runs sampled)
+obj>assign>extend>['x'] - Object.seal x 89,471,185 ops/sec ±14.25% (90 runs sampled)
+obj>assign>extend>['x'] - Proxy (strict) x 2,396,407 ops/sec ±4.32% (86 runs sampled)
+obj>assign>extend>['x'] - Proxy (allowlist) x 2,400,973 ops/sec ±4.65% (86 runs sampled)
+obj>assign>extend>['x'] - Proxy (denylist) x 2,385,032 ops/sec ±4.75% (84 runs sampled)
+obj>assign>extend>['x'] - Proxy (unrestricted) x 2,423,451 ops/sec ±4.60% (85 runs sampled)
 
 # Property call
-obj>call>present>['x']() - Baseline x 1,393,583,537 ops/sec ±0.23% (97 runs sampled)
-obj>call>present>['x']() - Object.create x 140,708,549 ops/sec ±0.33% (94 runs sampled)
-obj>call>present>['x']() - Object.freeze x 1,383,626,532 ops/sec ±0.26% (96 runs sampled)
-obj>call>present>['x']() - Object.preventExtensions x 1,398,150,930 ops/sec ±0.17% (98 runs sampled)
-obj>call>present>['x']() - Object.seal x 1,393,849,774 ops/sec ±0.23% (98 runs sampled)
-obj>call>present>['x']() - Proxy (strict) x 11,443,276 ops/sec ±0.92% (95 runs sampled)
-obj>call>present>['x']() - Proxy (allowlist) x 11,525,511 ops/sec ±0.36% (95 runs sampled)
-obj>call>present>['x']() - Proxy (denylist) x 11,143,878 ops/sec ±0.73% (89 runs sampled)
-obj>call>present>['x']() - Proxy (unrestricted) x 11,340,255 ops/sec ±0.63% (93 runs sampled)
+obj>call>present>['x']() - Baseline x 1,421,447,899 ops/sec ±0.12% (99 runs sampled)
+obj>call>present>['x']() - Object.create x 143,296,231 ops/sec ±0.74% (99 runs sampled)
+obj>call>present>['x']() - Object.freeze x 1,419,677,797 ops/sec ±0.15% (96 runs sampled)
+obj>call>present>['x']() - Object.preventExtensions x 1,406,014,852 ops/sec ±0.20% (98 runs sampled)
+obj>call>present>['x']() - Object.seal x 1,406,457,216 ops/sec ±0.16% (95 runs sampled)
+obj>call>present>['x']() - Proxy (strict) x 11,530,414 ops/sec ±0.25% (95 runs sampled)
+obj>call>present>['x']() - Proxy (allowlist) x 11,479,975 ops/sec ±0.35% (96 runs sampled)
+obj>call>present>['x']() - Proxy (denylist) x 11,561,778 ops/sec ±0.81% (96 runs sampled)
+obj>call>present>['x']() - Proxy (unrestricted) x 9,814,290 ops/sec ±0.87% (94 runs sampled)
 
-obj>call>prototype>['x']() - Baseline x 1,390,802,752 ops/sec ±0.18% (98 runs sampled)
-obj>call>prototype>['x']() - Object.freeze x 1,403,159,470 ops/sec ±0.16% (98 runs sampled)
-obj>call>prototype>['x']() - Object.preventExtensions x 1,391,458,341 ops/sec ±0.17% (99 runs sampled)
-obj>call>prototype>['x']() - Object.seal x 1,388,645,888 ops/sec ±0.21% (97 runs sampled)
-obj>call>prototype>['x']() - Proxy (denylist) x 11,492,414 ops/sec ±0.66% (95 runs sampled)
-obj>call>prototype>['x']() - Proxy (unrestricted) x 9,925,120 ops/sec ±0.90% (93 runs sampled)
+obj>call>prototype>['x']() - Baseline x 1,399,587,963 ops/sec ±0.16% (95 runs sampled)
+obj>call>prototype>['x']() - Object.freeze x 1,411,677,166 ops/sec ±0.09% (98 runs sampled)
+obj>call>prototype>['x']() - Object.preventExtensions x 1,420,509,240 ops/sec ±0.17% (97 runs sampled)
+obj>call>prototype>['x']() - Object.seal x 1,409,708,418 ops/sec ±0.23% (97 runs sampled)
+obj>call>prototype>['x']() - Proxy (denylist) x 11,742,578 ops/sec ±0.26% (95 runs sampled)
+obj>call>prototype>['x']() - Proxy (unrestricted) x 9,756,211 ops/sec ±0.32% (92 runs sampled)
 ```
 <!-- END:BENCH -->

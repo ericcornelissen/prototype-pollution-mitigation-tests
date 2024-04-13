@@ -6,78 +6,82 @@ OUTFILE='test.log'
 rm -f $OUTFILE
 touch $OUTFILE
 
-echo '# Baseline' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/baseline.test.js >>$OUTFILE
+{
+	echo '# Baseline'
+	node --test-reporter=./script/reporter.js test/object/baseline.test.js
 
-echo >>$OUTFILE
-echo '# Object.create' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/object-create-null.test.js >>$OUTFILE
+	echo
+	echo '# Object.create'
+	node --test-reporter=./script/reporter.js test/object/object-create-null.test.js
 
-# TODO: crashes; `Object.freeze` is too invasive for the testing framework?
-#echo >>$OUTFILE
-#echo 'Object.freeze' >>$OUTFILE
-#node --test-reporter=./script/reporter.js test/object/object-freeze.test.js >>$OUTFILE
+	# TODO: crashes; `Object.freeze` is too invasive for the testing framework?
+	#echo
+	#echo 'Object.freeze'
+	#node --test-reporter=./script/reporter.js test/object/object-freeze.test.js
 
-echo >>$OUTFILE
-echo '# Object.preventExtension' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/object-prevent-extensions.test.js >>$OUTFILE
+	echo
+	echo '# Object.preventExtension'
+	node --test-reporter=./script/reporter.js test/object/object-prevent-extensions.test.js
 
-echo >>$OUTFILE
-echo '# Object.seal' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/object-seal.test.js >>$OUTFILE
+	echo
+	echo '# Object.seal'
+	node --test-reporter=./script/reporter.js test/object/object-seal.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (strict)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/proxy-strict.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (strict)'
+	node --test-reporter=./script/reporter.js test/object/proxy-strict.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (allowlist)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/proxy-allowlist.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (allowlist)'
+	node --test-reporter=./script/reporter.js test/object/proxy-allowlist.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (denylist)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/proxy-denylist.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (denylist)'
+	node --test-reporter=./script/reporter.js test/object/proxy-denylist.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (unrestricted)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/object/proxy-unrestricted.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (unrestricted)'
+	node --test-reporter=./script/reporter.js test/object/proxy-unrestricted.test.js
+} >>$OUTFILE
 
 node script/convert-test.js obj $OUTFILE
 
+# ------------------------------------------------------------------------------
 
 rm -f $OUTFILE
 touch $OUTFILE
 
-echo '# Baseline' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/baseline.test.js >>$OUTFILE
+{
+	echo '# Baseline'
+	node --test-reporter=./script/reporter.js test/array/baseline.test.js
 
-# TODO: crashes; `Object.freeze` is too invasive for the testing framework?
-echo >>$OUTFILE
-echo '# Object.freeze' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/object-freeze.test.js >>$OUTFILE
+	echo
+	echo '# Object.freeze'
+	node --test-reporter=./script/reporter.js test/array/object-freeze.test.js
 
-echo >>$OUTFILE
-echo '# Object.preventExtension' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/object-prevent-extensions.test.js >>$OUTFILE
+	echo
+	echo '# Object.preventExtension'
+	node --test-reporter=./script/reporter.js test/array/object-prevent-extensions.test.js
 
-echo >>$OUTFILE
-echo '# Object.seal' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/object-seal.test.js >>$OUTFILE
+	echo
+	echo '# Object.seal'
+	node --test-reporter=./script/reporter.js test/array/object-seal.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (strict)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/proxy-strict.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (strict)'
+	node --test-reporter=./script/reporter.js test/array/proxy-strict.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (allowlist)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/proxy-allowlist.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (allowlist)'
+	node --test-reporter=./script/reporter.js test/array/proxy-allowlist.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (denylist)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/proxy-denylist.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (denylist)'
+	node --test-reporter=./script/reporter.js test/array/proxy-denylist.test.js
 
-echo >>$OUTFILE
-echo '# Proxy (unrestricted)' >>$OUTFILE
-node --test-reporter=./script/reporter.js test/array/proxy-unrestricted.test.js >>$OUTFILE
+	echo
+	echo '# Proxy (unrestricted)'
+	node --test-reporter=./script/reporter.js test/array/proxy-unrestricted.test.js
+} >>$OUTFILE
 
 node script/convert-test.js arr $OUTFILE

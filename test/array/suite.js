@@ -256,25 +256,6 @@ export function runSuite(setup) {
         });
       });
 
-      await t.test("delete", async (t) => {
-        await t.test("[42]", (t) => {
-          delete t.arr[indices.present];
-          assert.equal(t.arr[indices.present], undefined);
-        });
-
-        await t.test(".__proto__[42]", (t) => {
-          delete t.arr.__proto__[keys.prototype.number];
-          assert.equal(t.arr[keys.prototype.number], undefined);
-          assert.equal(Object.prototype[keys.prototype.number], undefined);
-        });
-
-        await t.test(".constructor.prototype[42]", (t) => {
-          delete t.arr.constructor.prototype[keys.prototype.number];
-          assert.equal(t.arr[keys.prototype.number], undefined);
-          assert.equal(Object.prototype[keys.prototype.number], undefined);
-        });
-      });
-
       await t.test("extend", async (t) => {
         await t.test("[42]", (t) => {
           t.arr[indices.extend] = values.extend.number;
@@ -308,6 +289,45 @@ export function runSuite(setup) {
 
       await t.test("['constructor']", (t) => {
         assert.doesNotThrow(() => { t.arr["constructor"] = Array.prototype.constructor; });
+      });
+    });
+
+    await t.test("delete", async (t) => {
+      await t.test("present", async (t) => {
+        await t.test("[42]", (t) => {
+          delete t.arr[indices.present];
+          assert.equal(t.arr[indices.present], undefined);
+        });
+      });
+
+      await t.test("absent", async (t) => {
+        await t.test("[42]", (t) => {
+          delete t.arr[indices.absent];
+          assert.equal(t.arr[indices.absent], undefined);
+        });
+      });
+
+      await t.test("prototype", async (t) => {
+        await t.test("[42]", (t) => {
+          delete t.arr[keys.prototype.number];
+          assert.notEqual(t.arr[keys.prototype.number], undefined);
+        });
+      });
+
+      await t.test(".__proto__", async (t) => {
+        await t.test("[42]", (t) => {
+          delete t.arr.__proto__[keys.prototype.number];
+          assert.equal(t.arr[keys.prototype.number], undefined);
+          assert.equal(Object.prototype[keys.prototype.number], undefined);
+        });
+      });
+
+      await t.test(".constructor", async (t) => {
+        await t.test(".prototype[42]", (t) => {
+          delete t.arr.constructor.prototype[keys.prototype.number];
+          assert.equal(t.arr[keys.prototype.number], undefined);
+          assert.equal(Object.prototype[keys.prototype.number], undefined);
+        });
       });
     });
 

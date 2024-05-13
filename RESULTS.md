@@ -102,18 +102,6 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>assign>override>.constructor.prototype['x']` | X |   | X | X |   |   |   | X
 `obj>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   | X
 `obj>assign>override>.constructor.prototype[Symbol]` | X |   | X | X |   |   |   | X
-`obj>assign>delete>.x` | X | X | X | X | X | X | X | X
-`obj>assign>delete>['x']` | X | X | X | X | X | X | X | X
-`obj>assign>delete>[42]` | X | X | X | X | X | X | X | X
-`obj>assign>delete>[Symbol]` | X | X | X | X | X | X | X | X
-`obj>assign>delete>.__proto__.x` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.__proto__['x']` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.__proto__[42]` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.__proto__[Symbol]` | X |   | X |   |   |   |   |  
-`obj>assign>delete>.constructor.prototype.x` | X |   | X |   |   |   |   | X
-`obj>assign>delete>.constructor.prototype['x']` | X |   | X |   |   |   |   | X
-`obj>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   | X
-`obj>assign>delete>.constructor.prototype[Symbol]` | X |   | X |   |   |   |   | X
 `obj>assign>extend>.x` | X | X | X | X | X | X | X | X
 `obj>assign>extend>['x']` | X | X | X | X | X | X | X | X
 `obj>assign>extend>[42]` | X | X | X | X | X | X | X | X
@@ -130,6 +118,26 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>assign>['__proto__']` | X | X | X | X | X | X | X | X
 `obj>assign>.constructor` | X | X | X | X | X | X | X | X
 `obj>assign>['constructor']` | X | X | X | X | X | X | X | X
+`obj>delete>present>.x` | X | X | X | X | X | X | X | X
+`obj>delete>present>['x']` | X | X | X | X | X | X | X | X
+`obj>delete>present>[42]` | X | X | X | X | X | X | X | X
+`obj>delete>present>[Symbol]` | X | X | X | X | X | X | X | X
+`obj>delete>absent>.x` | X | X | X | X | X | X | X | X
+`obj>delete>absent>['x']` | X | X | X | X | X | X | X | X
+`obj>delete>absent>[42]` | X | X | X | X | X | X | X | X
+`obj>delete>absent>[Symbol]` | X | X | X | X | X | X | X | X
+`obj>delete>prototype>.x` | X |   | X | X |   |   | X | X
+`obj>delete>prototype>['x']` | X |   | X | X |   |   | X | X
+`obj>delete>prototype>[42]` | X |   | X | X |   |   | X | X
+`obj>delete>prototype>[Symbol]` | X |   | X | X |   |   | X | X
+`obj>delete>.__proto__>.x` | X |   | X |   |   |   |   |  
+`obj>delete>.__proto__>['x']` | X |   | X |   |   |   |   |  
+`obj>delete>.__proto__>[42]` | X |   | X |   |   |   |   |  
+`obj>delete>.__proto__>[Symbol]` | X |   | X |   |   |   |   |  
+`obj>delete>.constructor>.prototype.x` | X |   | X |   |   |   |   | X
+`obj>delete>.constructor>.prototype['x']` | X |   | X |   |   |   |   | X
+`obj>delete>.constructor>.prototype[42]` | X |   | X |   |   |   |   | X
+`obj>delete>.constructor>.prototype[Symbol]` | X |   | X |   |   |   |   | X
 `obj>call>present>.x()` | X | X | X | X | X | X | X | X
 `obj>call>present>['x']()` | X | X | X | X | X | X | X | X
 `obj>call>prototype>.x()` | X |   | X | X |   |   | X | X
@@ -180,9 +188,6 @@ test | Baseline | Object.freeze | Object.preventExtension | Object.seal | Proxy 
 `arr>assign>override>[42]` | X | X | X | X | X | X | X | X
 `arr>assign>override>.__proto__[42]` | X |   | X | X |   |   |   |  
 `arr>assign>override>.constructor.prototype[42]` | X |   | X | X |   |   |   | X
-`arr>assign>delete>[42]` | X | X | X | X | X | X | X | X
-`arr>assign>delete>.__proto__[42]` | X |   | X |   |   |   |   |  
-`arr>assign>delete>.constructor.prototype[42]` | X |   | X |   |   |   |   | X
 `arr>assign>extend>[42]` | X | X | X | X | X | X | X | X
 `arr>assign>extend>.__proto__[42]` | X |   |   |   |   |   |   |  
 `arr>assign>extend>.constructor.prototype[42]` | X |   |   |   |   |   |   | X
@@ -190,6 +195,11 @@ test | Baseline | Object.freeze | Object.preventExtension | Object.seal | Proxy 
 `arr>assign>['__proto__']` | X | X | X | X | X | X | X | X
 `arr>assign>.constructor` | X |   | X | X | X | X | X | X
 `arr>assign>['constructor']` | X |   | X | X | X | X | X | X
+`arr>delete>present>[42]` | X | X | X | X | X | X | X | X
+`arr>delete>absent>[42]` | X | X | X | X | X | X | X | X
+`arr>delete>prototype>[42]` | X | X | X | X |   |   | X | X
+`arr>delete>.__proto__>[42]` | X |   | X |   |   |   |   |  
+`arr>delete>.constructor>.prototype[42]` | X |   | X |   |   |   |   | X
 `arr>call>present>[42]()` | X | X | X | X | X | X | X | X
 `arr>call>prototype>.constructor()` | X | X | X | X |   |   |   | X
 `arr>call>prototype>[@@iterator]()` | X | X | X | X |   | X | X | X

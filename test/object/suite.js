@@ -618,82 +618,6 @@ export function runSuite(setup) {
         });
       });
 
-      await t.test("delete", async (t) => {
-        await t.test(".x", (t) => {
-          assert.equal("a", keys.present.string);
-
-          delete t.obj.a;
-          assert.ok(!Object.hasOwn(t.obj, keys.present.string));
-        });
-
-        await t.test("['x']", (t) => {
-          delete t.obj[keys.present.string];
-          assert.ok(!Object.hasOwn(t.obj, keys.present.string));
-        });
-
-        await t.test("[42]", (t) => {
-          delete t.obj[keys.present.number];
-          assert.ok(!Object.hasOwn(t.obj, keys.present.number));
-        });
-
-        await t.test("[Symbol]", (t) => {
-          delete t.obj[keys.present.symbol];
-          assert.ok(!Object.hasOwn(t.obj, keys.present.symbol));
-        });
-
-        await t.test(".__proto__.x", (t) => {
-          assert.equal("c", keys.prototype.string);
-
-          delete t.obj.__proto__.c;
-          assert.equal(t.obj.c, undefined);
-          assert.equal(Object.prototype.c, undefined);
-        });
-
-        await t.test(".__proto__['x']", (t) => {
-          delete t.obj.__proto__[keys.prototype.string];
-          assert.equal(t.obj[keys.prototype.string], undefined);
-          assert.equal(Object.prototype[keys.prototype.string], undefined);
-        });
-
-        await t.test(".__proto__[42]", (t) => {
-          delete t.obj.__proto__[keys.prototype.number];
-          assert.equal(t.obj[keys.prototype.number], undefined);
-          assert.equal(Object.prototype[keys.prototype.number], undefined);
-        });
-
-        await t.test(".__proto__[Symbol]", (t) => {
-          delete t.obj.__proto__[keys.prototype.symbol];
-          assert.equal(t.obj[keys.prototype.symbol], undefined);
-          assert.equal(Object.prototype[keys.prototype.symbol], undefined);
-        });
-
-        await t.test(".constructor.prototype.x", (t) => {
-          assert.equal("c", keys.prototype.string);
-
-          delete t.obj.constructor.prototype.c;
-          assert.equal(t.obj.c, undefined);
-          assert.equal(Object.prototype.c, undefined);
-        });
-
-        await t.test(".constructor.prototype['x']", (t) => {
-          delete t.obj.constructor.prototype[keys.prototype.string];
-          assert.equal(t.obj[keys.prototype.string], undefined);
-          assert.equal(Object.prototype[keys.prototype.string], undefined);
-        });
-
-        await t.test(".constructor.prototype[42]", (t) => {
-          delete t.obj.constructor.prototype[keys.prototype.number];
-          assert.equal(t.obj[keys.prototype.number], undefined);
-          assert.equal(Object.prototype[keys.prototype.number], undefined);
-        });
-
-        await t.test(".constructor.prototype[Symbol]", (t) => {
-          delete t.obj.constructor.prototype[keys.prototype.symbol];
-          assert.equal(t.obj[keys.prototype.symbol], undefined);
-          assert.equal(Object.prototype[keys.prototype.symbol], undefined);
-        });
-      });
-
       await t.test("extend", async (t) => {
         await t.test(".x", (t) => {
           assert.equal("d", keys.extend.string);
@@ -784,6 +708,136 @@ export function runSuite(setup) {
 
       await t.test("['constructor']", (t) => {
         assert.doesNotThrow(() => { t.obj["constructor"] = Object.prototype.constructor; });
+      });
+    });
+
+    await t.test("delete", async (t) => {
+      await t.test("present", async (t) => {
+        await t.test(".x", (t) => {
+          assert.equal("a", keys.present.string);
+
+          delete t.obj.a;
+          assert.equal(t.obj[keys.absent.string], undefined);
+        });
+
+        await t.test("['x']", (t) => {
+          delete t.obj[keys.present.string];
+          assert.equal(t.obj[keys.absent.string], undefined);
+        });
+
+        await t.test("[42]", (t) => {
+          delete t.obj[keys.present.number];
+          assert.equal(t.obj[keys.absent.number], undefined);
+        });
+
+        await t.test("[Symbol]", (t) => {
+          delete t.obj[keys.present.symbol];
+          assert.equal(t.obj[keys.absent.symbol], undefined);
+        });
+      });
+
+      await t.test("absent", async (t) => {
+        await t.test(".x", (t) => {
+          assert.equal("b", keys.absent.string);
+
+          delete t.obj.b;
+          assert.equal(t.obj[keys.absent.string], undefined);
+        });
+
+        await t.test("['x']", (t) => {
+          delete t.obj[keys.absent.string];
+          assert.equal(t.obj[keys.absent.string], undefined);
+        });
+
+        await t.test("[42]", (t) => {
+          delete t.obj[keys.absent.number];
+          assert.equal(t.obj[keys.absent.number], undefined);
+        });
+
+        await t.test("[Symbol]", (t) => {
+          delete t.obj[keys.absent.symbol];
+          assert.equal(t.obj[keys.absent.symbol], undefined);
+        });
+      });
+
+      await t.test("prototype", async (t) => {
+        await t.test(".x", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          delete t.obj.c;
+          assert.notEqual(t.obj[keys.prototype.string], undefined);
+        });
+
+        await t.test("['x']", (t) => {
+          delete t.obj[keys.prototype.string];
+          assert.notEqual(t.obj[keys.prototype.string], undefined);
+        });
+
+        await t.test("[42]", (t) => {
+          delete t.obj[keys.prototype.number];
+          assert.notEqual(t.obj[keys.prototype.string], undefined);
+        });
+
+        await t.test("[Symbol]", (t) => {
+          delete t.obj[keys.prototype.symbol];
+          assert.notEqual(t.obj[keys.prototype.string], undefined);
+        });
+      });
+
+      await t.test(".__proto__", async (t) => {
+        await t.test(".x", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          delete t.obj.__proto__.c;
+          assert.equal(t.obj.c, undefined);
+          assert.equal(Object.prototype.c, undefined);
+        });
+
+        await t.test("['x']", (t) => {
+          delete t.obj.__proto__[keys.prototype.string];
+          assert.equal(t.obj[keys.prototype.string], undefined);
+          assert.equal(Object.prototype[keys.prototype.string], undefined);
+        });
+
+        await t.test("[42]", (t) => {
+          delete t.obj.__proto__[keys.prototype.number];
+          assert.equal(t.obj[keys.prototype.number], undefined);
+          assert.equal(Object.prototype[keys.prototype.number], undefined);
+        });
+
+        await t.test("[Symbol]", (t) => {
+          delete t.obj.__proto__[keys.prototype.symbol];
+          assert.equal(t.obj[keys.prototype.symbol], undefined);
+          assert.equal(Object.prototype[keys.prototype.symbol], undefined);
+        });
+      });
+
+      await t.test(".constructor", async (t) => {
+        await t.test(".prototype.x", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          delete t.obj.constructor.prototype.c;
+          assert.equal(t.obj.c, undefined);
+          assert.equal(Object.prototype.c, undefined);
+        });
+
+        await t.test(".prototype['x']", (t) => {
+          delete t.obj.constructor.prototype[keys.prototype.string];
+          assert.equal(t.obj[keys.prototype.string], undefined);
+          assert.equal(Object.prototype[keys.prototype.string], undefined);
+        });
+
+        await t.test(".prototype[42]", (t) => {
+          delete t.obj.constructor.prototype[keys.prototype.number];
+          assert.equal(t.obj[keys.prototype.number], undefined);
+          assert.equal(Object.prototype[keys.prototype.number], undefined);
+        });
+
+        await t.test(".prototype[Symbol]", (t) => {
+          delete t.obj.constructor.prototype[keys.prototype.symbol];
+          assert.equal(t.obj[keys.prototype.symbol], undefined);
+          assert.equal(Object.prototype[keys.prototype.symbol], undefined);
+        });
       });
     });
 

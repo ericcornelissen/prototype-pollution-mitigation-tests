@@ -7,7 +7,7 @@ export function setup(base) {
     return base;
   }
 
-  return new Proxy(base, {
+  const handler = {
     get(target, property, _proxy) {
       /// Allow own properties
       if (Object.hasOwn(target, property)) {
@@ -31,5 +31,7 @@ export function setup(base) {
 
       return undefined;
     },
-  });
+  };
+
+  return new Proxy(base, handler);
 }

@@ -66,9 +66,9 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>access>prototype>['x']` | X |   | X | X |   |   | X | X
 `obj>access>prototype>[42]` | X |   | X | X |   |   | X | X
 `obj>access>prototype>[Symbol]` | X |   | X | X |   |   | X | X
-`obj>access>prototype>'x' in` | X |   | X | X | X | X | X | X
-`obj>access>prototype>42 in` | X |   | X | X | X | X | X | X
-`obj>access>prototype>[Symbol] in` | X |   | X | X | X | X | X | X
+`obj>access>prototype>'x' in` | X |   | X | X |   |   | X | X
+`obj>access>prototype>42 in` | X |   | X | X |   |   | X | X
+`obj>access>prototype>[Symbol] in` | X |   | X | X |   |   | X | X
 `obj>access>prototype>{x} =` | X |   | X | X |   |   | X | X
 `obj>access>prototype>{['x']: x} =` | X |   | X | X |   |   | X | X
 `obj>access>prototype>{42: x} =` | X |   | X | X |   |   | X | X
@@ -173,7 +173,7 @@ test | Baseline | Object.freeze | Object.preventExtension | Object.seal | Proxy 
 `arr>access>absent>(function([x]){return x})` | X | X | X | X |   | X | X | X
 `arr>access>absent>(([x]) => (x))` | X | X | X | X |   | X | X | X
 `arr>access>prototype>[42]` | X | X | X | X |   |   | X | X
-`arr>access>prototype>42 in` | X | X | X | X | X | X | X | X
+`arr>access>prototype>42 in` | X | X | X | X |   |   | X | X
 `arr>access>prototype>[x] =` | X | X | X | X |   | X | X | X
 `arr>access>prototype>function([x]){return x}` | X | X | X | X |   | X | X | X
 `arr>access>prototype>(function([x]){return x})` | X | X | X | X |   | X | X | X

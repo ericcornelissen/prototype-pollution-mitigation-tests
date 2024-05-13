@@ -7,14 +7,22 @@ export function setup(base) {
     return base;
   }
 
-  return new Proxy(base, {
+  const handler = {
     get(target, property, _receiver) {
-      /// Allow own properties
-      if (Object.hasOwn(target, property)) {
+      if (handler.has(target, property)) {
         return setup(target[property]);
       }
 
       return undefined;
     },
-  });
+    has(target, property) {
+      if (Object.hasOwn(target, property)) {
+        return true;
+      }
+
+      return false;
+    },
+  };
+
+  return new Proxy(base, handler);
 }

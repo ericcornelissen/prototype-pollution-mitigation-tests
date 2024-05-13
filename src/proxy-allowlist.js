@@ -62,19 +62,26 @@ export function setup(base) {
     allowlist = ALLOWLIST_FOR_ARRAY;
   }
 
-  return new Proxy(base, {
+  const handler = {
     get(target, property, _receiver) {
-      /// Allow own properties
-      if (Object.hasOwn(target, property)) {
-        return setup(target[property]);
-      }
-
-      /// Allow predefined properties
-      if (allowlist.includes(property)) {
+      if (handler.has(target, property)) {
         return setup(target[property]);
       }
 
       return undefined;
     },
-  });
+    has(target, property) {
+      if (Object.hasOwn(target, property)) {
+        return true;
+      }
+
+      if (allowlist.includes(property)) {
+        return true;
+      }
+
+      return undefined;
+    },
+  };
+
+  return new Proxy(base, handler);
 }

@@ -4,7 +4,7 @@
 # Results
 
 This file contains the last recorded test results for this project. It was run
-on 2024-4-13 against Node.js v20.8.0.
+on 2024-5-13 against Node.js v20.8.0.
 
 _This file should not be edited manually, to update it run `./run-tests.sh` or
 `/run-benchmarks.sh` from the root of this project._
@@ -20,14 +20,71 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 `obj>access>present>['x']` | X | X | X | X | X | X | X | X
 `obj>access>present>[42]` | X | X | X | X | X | X | X | X
 `obj>access>present>[Symbol]` | X | X | X | X | X | X | X | X
+`obj>access>present>'x' in` | X | X | X | X | X | X | X | X
+`obj>access>present>42 in` | X | X | X | X | X | X | X | X
+`obj>access>present>[Symbol] in` | X | X | X | X | X | X | X | X
+`obj>access>present>{x} =` | X | X | X | X | X | X | X | X
+`obj>access>present>{['x']: x} =` | X | X | X | X | X | X | X | X
+`obj>access>present>{42: x} =` | X | X | X | X | X | X | X | X
+`obj>access>present>{[Symbol]: x} =` | X | X | X | X | X | X | X | X
+`obj>access>present>function({x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>present>function({['x']: x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>present>function({42: x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>present>function({[Symbol]: x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>present>(function({x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>present>(function({['x']: x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>present>(function({42: x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>present>(function({[Symbol]: x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>present>(({x}) => (x))` | X | X | X | X | X | X | X | X
+`obj>access>present>(({['x']: x}) => (x))` | X | X | X | X | X | X | X | X
+`obj>access>present>(({42: x}) => (x))` | X | X | X | X | X | X | X | X
+`obj>access>present>(({[Symbol]: x}) => (x))` | X | X | X | X | X | X | X | X
 `obj>access>absent>.x` | X | X | X | X | X | X | X | X
 `obj>access>absent>['x']` | X | X | X | X | X | X | X | X
 `obj>access>absent>[42]` | X | X | X | X | X | X | X | X
 `obj>access>absent>[Symbol]` | X | X | X | X | X | X | X | X
+`obj>access>absent>'x' in` | X | X | X | X | X | X | X | X
+`obj>access>absent>42 in` | X | X | X | X | X | X | X | X
+`obj>access>absent>[Symbol] in` | X | X | X | X | X | X | X | X
+`obj>access>absent>{x} =` | X | X | X | X | X | X | X | X
+`obj>access>absent>{['x']: x} =` | X | X | X | X | X | X | X | X
+`obj>access>absent>{42: x} =` | X | X | X | X | X | X | X | X
+`obj>access>absent>{[Symbol]: x} =` | X | X | X | X | X | X | X | X
+`obj>access>absent>function({x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>absent>function({['x']: x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>absent>function({42: x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>absent>function({[Symbol]: x}){return x}` | X | X | X | X | X | X | X | X
+`obj>access>absent>(function({x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>absent>(function({['x']: x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>absent>(function({42: x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>absent>(function({[Symbol]: x}){return x})` | X | X | X | X | X | X | X | X
+`obj>access>absent>(({x}) => (x))` | X | X | X | X | X | X | X | X
+`obj>access>absent>(({['x']: x}) => (x))` | X | X | X | X | X | X | X | X
+`obj>access>absent>(({42: x}) => (x))` | X | X | X | X | X | X | X | X
+`obj>access>absent>(({[Symbol]: x}) => (x))` | X | X | X | X | X | X | X | X
 `obj>access>prototype>.x` | X |   | X | X |   |   | X | X
 `obj>access>prototype>['x']` | X |   | X | X |   |   | X | X
 `obj>access>prototype>[42]` | X |   | X | X |   |   | X | X
 `obj>access>prototype>[Symbol]` | X |   | X | X |   |   | X | X
+`obj>access>prototype>'x' in` | X |   | X | X | X | X | X | X
+`obj>access>prototype>42 in` | X |   | X | X | X | X | X | X
+`obj>access>prototype>[Symbol] in` | X |   | X | X | X | X | X | X
+`obj>access>prototype>{x} =` | X |   | X | X |   |   | X | X
+`obj>access>prototype>{['x']: x} =` | X |   | X | X |   |   | X | X
+`obj>access>prototype>{42: x} =` | X |   | X | X |   |   | X | X
+`obj>access>prototype>{[Symbol]: x} =` | X |   | X | X |   |   | X | X
+`obj>access>prototype>function({x}){return x}` | X |   | X | X |   |   | X | X
+`obj>access>prototype>function({['x']: x}){return x}` | X |   | X | X |   |   | X | X
+`obj>access>prototype>function({42: x}){return x}` | X |   | X | X |   |   | X | X
+`obj>access>prototype>function({[Symbol]: x}){return x}` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(function({x}){return x})` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(function({['x']: x}){return x})` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(function({42: x}){return x})` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(function({[Symbol]: x}){return x})` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(({x}) => (x))` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(({['x']: x}) => (x))` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(({42: x}) => (x))` | X |   | X | X |   |   | X | X
+`obj>access>prototype>(({[Symbol]: x}) => (x))` | X |   | X | X |   |   | X | X
 `obj>access>.__proto__` | X |   | X | X |   |   |   |  
 `obj>access>['__proto__']` | X |   | X | X |   |   |   |  
 `obj>access>.constructor` | X |   | X | X |   |   |   | X
@@ -96,8 +153,23 @@ test | Baseline | Object.create | Object.preventExtension | Object.seal | Proxy 
 test | Baseline | Object.freeze | Object.preventExtension | Object.seal | Proxy (strict) | Proxy (allowlist) | Proxy (denylist) | Proxy (unrestricted)
 --- | --- | --- | --- | --- | --- | --- | --- | ---
 `arr>access>present>[42]` | X | X | X | X | X | X | X | X
+`arr>access>present>42 in` | X | X | X | X | X | X | X | X
+`arr>access>present>[x] =` | X | X | X | X |   | X | X | X
+`arr>access>present>function([x]){return x}` | X | X | X | X |   | X | X | X
+`arr>access>present>(function([x]){return x})` | X | X | X | X |   | X | X | X
+`arr>access>present>(([x]) => (x))` | X | X | X | X |   | X | X | X
 `arr>access>absent>[42]` | X | X | X | X | X | X | X | X
+`arr>access>absent>42 in` | X | X | X | X | X | X | X | X
+`arr>access>absent>[x] =` | X | X | X | X |   | X | X | X
+`arr>access>absent>function([x]){return x}` | X | X | X | X |   | X | X | X
+`arr>access>absent>(function([x]){return x})` | X | X | X | X |   | X | X | X
+`arr>access>absent>(([x]) => (x))` | X | X | X | X |   | X | X | X
 `arr>access>prototype>[42]` | X | X | X | X |   |   | X | X
+`arr>access>prototype>42 in` | X | X | X | X | X | X | X | X
+`arr>access>prototype>[x] =` | X | X | X | X |   | X | X | X
+`arr>access>prototype>function([x]){return x}` | X | X | X | X |   | X | X | X
+`arr>access>prototype>(function([x]){return x})` | X | X | X | X |   | X | X | X
+`arr>access>prototype>(([x]) => (x))` | X | X | X | X |   | X | X | X
 `arr>access>.length` | X | X | X | X | X | X | X | X
 `arr>access>.__proto__` | X | X | X | X |   |   |   |  
 `arr>access>['__proto__']` | X | X | X | X |   |   |   |  

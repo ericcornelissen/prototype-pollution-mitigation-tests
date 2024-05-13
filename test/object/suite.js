@@ -128,6 +128,118 @@ export function runSuite(setup) {
         await t.test("[Symbol]", (t) => {
           assert.equal(t.obj[keys.present.symbol], values.present.symbol.initial);
         });
+
+        await t.test("'x' in", (t) => {
+          assert.ok(keys.present.string in t.obj);
+        });
+
+        await t.test("42 in", (t) => {
+          assert.ok(keys.present.number in t.obj);
+        });
+
+        await t.test("[Symbol] in", (t) => {
+          assert.ok(keys.present.symbol in t.obj);
+        });
+
+        await t.test("{x} =", (t) => {
+          assert.equal("a", keys.present.string);
+
+          const { a: x } = t.obj;
+          assert.equal(x, values.present.string.initial);
+        });
+
+        await t.test("{['x']: x} =", (t) => {
+          const { [keys.present.string]: x } = t.obj;
+          assert.equal(x, values.present.string.initial);
+        });
+
+        await t.test("{42: x} =", (t) => {
+          const { [keys.present.number]: x } = t.obj;
+          assert.equal(x, values.present.number.initial);
+        });
+
+        await t.test("{[Symbol]: x} =", (t) => {
+          const { [keys.present.symbol]: x } = t.obj;
+          assert.equal(x, values.present.symbol.initial);
+        });
+
+        await t.test("function({x}){return x}", (t) => {
+          assert.equal("a", keys.present.string);
+
+          function f({ a }) {
+            return a;
+          }
+
+          assert.equal(f(t.obj), values.present.string.initial);
+        });
+
+        await t.test("function({['x']: x}){return x}", (t) => {
+          function f({ [keys.present.string]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), values.present.string.initial);
+        });
+
+        await t.test("function({42: x}){return x}", (t) => {
+          function f({ [keys.present.number]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), values.present.number.initial);
+        });
+
+        await t.test("function({[Symbol]: x}){return x}", (t) => {
+          function f({ [keys.present.symbol]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), values.present.symbol.initial);
+        });
+
+        await t.test("(function({x}){return x})", (t) => {
+          assert.equal("a", keys.present.string);
+
+          const x = (function({ a }) {return a})(t.obj);
+          assert.equal(x, values.present.string.initial);
+        });
+
+        await t.test("(function({['x']: x}){return x})", (t) => {
+          const x = (function({ [keys.present.string]: x }) {return x})(t.obj);
+          assert.equal(x, values.present.string.initial);
+        });
+
+        await t.test("(function({42: x}){return x})", (t) => {
+          const x = (function({ [keys.present.number]: x }) {return x})(t.obj);
+          assert.equal(x, values.present.number.initial);
+        });
+
+        await t.test("(function({[Symbol]: x}){return x})", (t) => {
+          const x = (function({ [keys.present.symbol]: x }) {return x})(t.obj);
+          assert.equal(x, values.present.symbol.initial);
+        });
+
+        await t.test("(({x}) => (x))", (t) => {
+          assert.equal("a", keys.present.string);
+
+          const x = (({ a }) => (a))(t.obj);
+          assert.equal(x, values.present.string.initial);
+        });
+
+        await t.test("(({['x']: x}) => (x))", (t) => {
+          const x = (({ [keys.present.string]: x }) => (x))(t.obj);
+          assert.equal(x, values.present.string.initial);
+        });
+
+        await t.test("(({42: x}) => (x))", (t) => {
+          const x = (({ [keys.present.number]: x }) => (x))(t.obj);
+          assert.equal(x, values.present.number.initial);
+        });
+
+        await t.test("(({[Symbol]: x}) => (x))", (t) => {
+          const x = (({ [keys.present.symbol]: x }) => (x))(t.obj);
+          assert.equal(x, values.present.symbol.initial);
+        });
       });
 
       await t.test("absent", async (t) => {
@@ -148,6 +260,118 @@ export function runSuite(setup) {
         await t.test("[Symbol]", (t) => {
           assert.equal(t.obj[keys.absent.symbol], undefined);
         });
+
+        await t.test("'x' in", (t) => {
+          assert.ok(!(keys.absent.string in t.obj));
+        });
+
+        await t.test("42 in", (t) => {
+          assert.ok(!(keys.absent.number in t.obj));
+        });
+
+        await t.test("[Symbol] in", (t) => {
+          assert.ok(!(keys.absent.symbol in t.obj));
+        });
+
+        await t.test("{x} =", (t) => {
+          assert.equal("b", keys.absent.string);
+
+          const { b: x } = t.obj;
+          assert.equal(x, undefined);
+        });
+
+        await t.test("{['x']: x} =", (t) => {
+          const { [keys.absent.string]: x } = t.obj;
+          assert.equal(x, undefined);
+        });
+
+        await t.test("{42: x} =", (t) => {
+          const { [keys.absent.number]: x } = t.obj;
+          assert.equal(x, undefined);
+        });
+
+        await t.test("{[Symbol]: x} =", (t) => {
+          const { [keys.absent.symbol]: x } = t.obj;
+          assert.equal(x, undefined);
+        });
+
+        await t.test("function({x}){return x}", (t) => {
+          assert.equal("b", keys.absent.string);
+
+          function f({ b }) {
+            return b;
+          }
+
+          assert.equal(f(t.obj), undefined);
+        });
+
+        await t.test("function({['x']: x}){return x}", (t) => {
+          function f({ [keys.absent.string]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), undefined);
+        });
+
+        await t.test("function({42: x}){return x}", (t) => {
+          function f({ [keys.absent.number]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), undefined);
+        });
+
+        await t.test("function({[Symbol]: x}){return x}", (t) => {
+          function f({ [keys.absent.symbol]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), undefined);
+        });
+
+        await t.test("(function({x}){return x})", (t) => {
+          assert.equal("b", keys.absent.string);
+
+          const x = (function({ b }) {return b})(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(function({['x']: x}){return x})", (t) => {
+          const x = (function({ [keys.absent.string]: x }) {return x})(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(function({42: x}){return x})", (t) => {
+          const x = (function({ [keys.absent.number]: x }) {return x})(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(function({[Symbol]: x}){return x})", (t) => {
+          const x = (function({ [keys.absent.symbol]: x }) {return x})(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(({x}) => (x))", (t) => {
+          assert.equal("b", keys.absent.string);
+
+          const x = (({ b }) => (b))(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(({['x']: x}) => (x))", (t) => {
+          const x = (({ [keys.absent.string]: x }) => (x))(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(({42: x}) => (x))", (t) => {
+          const x = (({ [keys.absent.number]: x }) => (x))(t.obj);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(({[Symbol]: x}) => (x))", (t) => {
+          const x = (({ [keys.absent.symbol]: x }) => (x))(t.obj);
+          assert.equal(x, undefined);
+        });
       });
 
       await t.test("prototype", async (t) => {
@@ -167,6 +391,118 @@ export function runSuite(setup) {
 
         await t.test("[Symbol]", (t) => {
           assert.equal(t.obj[keys.prototype.symbol], values.prototype.symbol.initial);
+        });
+
+        await t.test("'x' in", (t) => {
+          assert.ok(keys.prototype.string in t.obj);
+        });
+
+        await t.test("42 in", (t) => {
+          assert.ok(keys.prototype.number in t.obj);
+        });
+
+        await t.test("[Symbol] in", (t) => {
+          assert.ok(keys.prototype.symbol in t.obj);
+        });
+
+        await t.test("{x} =", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          const { c: x } = t.obj;
+          assert.equal(x, values.prototype.string.initial);
+        });
+
+        await t.test("{['x']: x} =", (t) => {
+          const { [keys.prototype.string]: c } = t.obj;
+          assert.equal(c, values.prototype.string.initial);
+        });
+
+        await t.test("{42: x} =", (t) => {
+          const { [keys.prototype.number]: x } = t.obj;
+          assert.equal(x, values.prototype.number.initial);
+        });
+
+        await t.test("{[Symbol]: x} =", (t) => {
+          const { [keys.prototype.symbol]: x } = t.obj;
+          assert.equal(x, values.prototype.symbol.initial);
+        });
+
+        await t.test("function({x}){return x}", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          function f({ c }) {
+            return c;
+          }
+
+          assert.equal(f(t.obj), values.prototype.string.initial);
+        });
+
+        await t.test("function({['x']: x}){return x}", (t) => {
+          function f({ [keys.prototype.string]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), values.prototype.string.initial);
+        });
+
+        await t.test("function({42: x}){return x}", (t) => {
+          function f({ [keys.prototype.number]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), values.prototype.number.initial);
+        });
+
+        await t.test("function({[Symbol]: x}){return x}", (t) => {
+          function f({ [keys.prototype.symbol]: x }) {
+            return x;
+          }
+
+          assert.equal(f(t.obj), values.prototype.symbol.initial);
+        });
+
+        await t.test("(function({x}){return x})", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          const x = (function({ c }) {return c})(t.obj);
+          assert.equal(x, values.prototype.string.initial);
+        });
+
+        await t.test("(function({['x']: x}){return x})", (t) => {
+          const x = (function({ [keys.prototype.string]: x }) {return x})(t.obj);
+          assert.equal(x, values.prototype.string.initial);
+        });
+
+        await t.test("(function({42: x}){return x})", (t) => {
+          const x = (function({ [keys.prototype.number]: x }) {return x})(t.obj);
+          assert.equal(x, values.prototype.number.initial);
+        });
+
+        await t.test("(function({[Symbol]: x}){return x})", (t) => {
+          const x = (function({ [keys.prototype.symbol]: x }) {return x})(t.obj);
+          assert.equal(x, values.prototype.symbol.initial);
+        });
+
+        await t.test("(({x}) => (x))", (t) => {
+          assert.equal("c", keys.prototype.string);
+
+          const x = (({ c }) => (c))(t.obj);
+          assert.equal(x, values.prototype.string.initial);
+        });
+
+        await t.test("(({['x']: x}) => (x))", (t) => {
+          const x = (({ [keys.prototype.string]: x }) => (x))(t.obj);
+          assert.equal(x, values.prototype.string.initial);
+        });
+
+        await t.test("(({42: x}) => (x))", (t) => {
+          const x = (({ [keys.prototype.number]: x }) => (x))(t.obj);
+          assert.equal(x, values.prototype.number.initial);
+        });
+
+        await t.test("(({[Symbol]: x}) => (x))", (t) => {
+          const x = (({ [keys.prototype.symbol]: x }) => (x))(t.obj);
+          assert.equal(x, values.prototype.symbol.initial);
         });
       });
 

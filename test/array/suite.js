@@ -21,10 +21,10 @@ const indices = {
 
 const keys = {
   prototype: {
-    number: 999999999999999,
+    number: 15_000,
   },
   extendPrototype: {
-    number: 999999999999998,
+    number: 15_001,
   },
 };
 
@@ -71,17 +71,123 @@ export function runSuite(setup) {
         await t.test("[42]", (t) => {
           assert.equal(t.arr[indices.present], values.present.initial);
         });
+
+        await t.test("42 in", (t) => {
+          assert.ok(indices.present in t.arr);
+        });
+
+        await t.test("[x] =", (t) => {
+          assert.equal(0, indices.present);
+
+          const [x] = t.arr;
+          assert.equal(x, values.present.initial);
+        });
+
+        await t.test("function([x]){return x}", (t) => {
+          assert.equal(0, indices.present);
+
+          function f([x]) {
+            return x;
+          }
+
+          assert.equal(f(t.arr), values.present.initial);
+        });
+
+        await t.test("(function([x]){return x})", (t) => {
+          assert.equal(0, indices.present);
+
+          const x = (function ([x]) { return x })(t.arr);
+          assert.equal(x, values.present.initial);
+        });
+
+        await t.test("(([x]) => (x))", (t) => {
+          assert.equal(0, indices.present);
+
+          const x = (([x]) => (x))(t.arr);
+          assert.equal(x, values.present.initial);
+        });
       });
 
       await t.test("absent", async (t) => {
         await t.test("[42]", (t) => {
           assert.equal(t.arr[indices.absent], undefined);
         });
+
+        await t.test("42 in", (t) => {
+          assert.ok(!(indices.absent in t.arr));
+        });
+
+        await t.test("[x] =", (t) => {
+          assert.equal(2, indices.absent);
+
+          const [/*0*/, /*1*/, x] = t.arr;
+          assert.equal(x, undefined);
+        });
+
+        await t.test("function([x]){return x}", (t) => {
+          assert.equal(2, indices.absent);
+
+          function f([/*0*/, /*1*/, x]) {
+            return x;
+          }
+
+          assert.equal(f(t.arr), undefined);
+        });
+
+        await t.test("(function([x]){return x})", (t) => {
+          assert.equal(2, indices.absent);
+
+          const x = (function ([/*0*/, /*1*/, x]) { return x })(t.arr);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(([x]) => (x))", (t) => {
+          assert.equal(2, indices.absent);
+
+          const x = (([/*0*/, /*1*/, x]) => (x))(t.arr);
+          assert.equal(x, undefined);
+        });
       });
 
       await t.test("prototype", async (t) => {
         await t.test("[42]", (t) => {
           assert.equal(t.arr[keys.prototype.number], values.prototype.number.initial);
+        });
+
+        await t.test("42 in", (t) => {
+          assert.ok(keys.prototype.number in t.arr);
+        });
+
+        await t.test("[x] =", (t) => {
+          const commas = ",".repeat(keys.prototype.number);
+          const code = `const [${commas}x]=t.arr;x`;
+
+          const x = eval(code);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("function([x]){return x}", (t) => {
+          const commas = ",".repeat(keys.prototype.number);
+          const code = `function f([${commas}x]){return x}f(t.arr)`;
+
+          const x = eval(code);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(function([x]){return x})", (t) => {
+          const commas = ",".repeat(keys.prototype.number);
+          const code = `(function([${commas}x]){return x})(t.arr)`;
+
+          const x = eval(code);
+          assert.equal(x, undefined);
+        });
+
+        await t.test("(([x]) => (x))", (t) => {
+          const commas = ",".repeat(keys.prototype.number);
+          const code = `(([${commas}x])=>(x))(t.arr)`;
+
+          const x = eval(code);
+          assert.equal(x, undefined);
         });
       });
 
@@ -106,7 +212,11 @@ export function runSuite(setup) {
       });
 
       await t.test("for-in", (t) => {
-        const expected = new Set(["0", "1", "999999999999999"]);
+        const expected = new Set([
+          `${indices.present}`,
+          `${indices.function}`,
+          `${keys.prototype.number}`,
+        ]);
 
         const actual = new Set();
         for (const entry in t.arr) {
